@@ -218,6 +218,7 @@ public partial class GameBoard : GridContainer
 			Point newPoint = new Point(x,y);
 			newPoint.SetValue(currentPlayerId);
 			gameBoardMatrix.SetPoint(newPoint);
+			gameBoardSate[y, x] = currentPlayerId;
 			if (currentPlayerId == player1.GetId()) {
 				 player1Points.Add(newPoint);
 
