@@ -1,0 +1,169 @@
+using Godot;
+using System;
+
+public partial class GameScreen : Node2D
+{
+	[Signal]
+	public delegate void ChangeSceneEventHandler(string currentScene);
+	
+	GameOptions gameOptions = new GameOptions();
+	Label player1;
+	Label player2;
+	Label player1Score;
+	Label player2Score;
+	Label timeLeftLabel;
+	Timer timer;
+	int timeLeft;
+	int gameTime;
+	// Game paused menu
+	CanvasLayer gamePausedMenu;
+	CanvasLayer gameOverMenu;
+	GameBoard gameBoardSection;
+	// Called when the node enters the scene tree for the first time.
+	public override void _Ready()
+	{
+		player1 = GetNode<Label>("Player1/Player1Name");
+		player2 = GetNode<Label>("Player2/Player2Name");
+		timeLeftLabel = GetNode<Label>("TimeLeft");
+		timer = GetNode<Timer>("Timer");
+		// Pause game menu
+		gamePausedMenu = GetNode<CanvasLayer>("PauseGame");
+		gamePausedMenu.Hide();
+		
+		// game over menu
+		gameOverMenu = GetNode<CanvasLayer>("GameOverMenu");
+		gameOverMenu.Hide();
+		// Connect the Timer's timeout signal to a method
+		timer.Timeout += OnTimerTimeout;
+		timer.WaitTime = 1.0f;
+		player1Score = GetNode<Label>("Player1Score");
+		player2Score = GetNode<Label>("Player2Score");
+		gameBoardSection.SetScoreLabel(player1Score, player2Score);
+		
+		SetUpScreen();
+		}
+
+	public void SetGameOptions(GameOptions gameOptions)
+	{
+		gameBoardSection = GetNode<GameBoard>("GameBoardSection");
+		gameBoardSection.SetGameOptions(gameOptions);
+		
+		
+		this.gameOptions = gameOptions;
+		timeLeft = gameOptions.gameTime;
+		gameTime = timeLeft;
+	}
+
+	private void SetUpScreen()
+	{
+		timer.Start();
+		player1.Text = this.gameOptions.playerNames[0];
+		player2.Text = this.gameOptions.playerNames[1];
+		UpdateTimeLeftLabel();
+	}
+
+	// Method called every time the Timer times out (every second)
+	private void OnTimerTimeout()
+	{
+		if (timeLeft > 0)
+		{
+			timeLeft--;
+			UpdateTimeLeftLabel();
+		}
+		else
+		{
+			timer.Stop();
+			OnEndGame();
+		}
+	}
+
+	private void UpdateTimeLeftLabel()
+	{
+		timeLeftLabel.Text = ConvertSecondsToMinuteSecond(timeLeft);
+	}
+
+	private string ConvertSecondsToMinuteSecond(int totalSeconds)
+	{
+		int minutes = totalSeconds / 60;
+		int seconds = totalSeconds % 60;
+		return $"{minutes:D2}:{seconds:D2}";
+	}
+	private void OnRestartButton()
+	{
+		timeLeft = gameTime;
+		GD.Print("test");
+		GetTree().Paused = false;
+		GetTree().CallGroup("BlueDot", "queue_free");
+		GetTree().CallGroup("RedDot", "queue_free");
+		GetTree().CallGroup("DeadIcon", "queue_free");
+		GetTree().CallGroup("Cell", "queue_free");	
+		player1Score.Text = "0";
+		player2Score.Text = "0";
+		gameBoardSection.NewGame();
+		gamePausedMenu.Hide();
+	}
+	private void OnEndGame()
+	{
+		int[] score = gameBoardSection.GetScore();
+		Label winnerLabel = gameOverMenu.GetNode<Label>("WinnerLabel");
+		if (score[0] > score[1]) {
+			winnerLabel.Text = player1.Text + " Wins !!!";
+		}
+		else if (score[0] < score[1]){
+			winnerLabel.Text = player2.Text + " Wins !!!";			
+		}
+		else {
+			winnerLabel.Text = "it's draw !!!";
+		}
+		
+		gameOverMenu.Show();
+		GetTree().Paused = true;
+	}
+	
+	
+	// Button Event 
+	private void _on_pause_button_pressed()
+	{
+		GetTree().Paused = true;
+		gamePausedMenu.Show();
+	}
+	
+	private void OnPlayButton()
+	{
+		GetTree().Paused = false;
+		gamePausedMenu.Hide();
+	}
+	private void OnPauseGameMenu()
+	{
+		GetTree().Paused = false;		
+		EmitSignal(nameof(ChangeScene), "main_menu");
+	}
+	private void OnGoOut()
+	{
+		GetTree().Paused = false;
+		EmitSignal(nameof(ChangeScene), "game_options");
+	}
+	private void GameOverGoOut()
+	{
+		GetTree().Paused = false;		
+		EmitSignal(nameof(ChangeScene), "game_options");
+	}
+	private void OnGameOverToMenu()
+	{
+		GetTree().Paused = false;		
+		EmitSignal(nameof(ChangeScene), "main_menu");
+	}
+	private void OnGameOverRestartButton()
+	{
+		OnRestartButton();
+		gameOverMenu.Hide();
+	}
+
+}
+
+
+
+
+
+
+

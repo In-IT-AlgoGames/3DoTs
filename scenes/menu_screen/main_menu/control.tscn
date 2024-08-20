@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://dju1e12jqv6yu"]
+
+[sub_resource type="Theme" id="Theme_ymbtn"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_ymbtn")
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+
+[node name="Node2D" type="Node2D" parent="TouchScreenButton"]
+position = Vector2(-2, 1)
+
+[node name="ResourcePreloader" type="ResourcePreloader" parent="."]
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Button" type="Button" parent="Node2D"]
+light_mask = 9
+offset_left = 3.0
+offset_right = 11.0
+offset_bottom = 8.0
+theme_override_colors/font_color = Color(0.572549, 0.537255, 0.6, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0.772549, 1)
+text = "Home"

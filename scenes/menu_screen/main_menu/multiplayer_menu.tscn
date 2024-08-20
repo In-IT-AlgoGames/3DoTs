@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://byx1hlp66c8rf"]
+
+[ext_resource type="Script" path="res://scripts/Controllers/MultiplayerMenu.cs" id="1_4i4iw"]
+[ext_resource type="Texture2D" uid="uid://b8j3xfsg4myw0" path="res://assets/images/log-out.png" id="2_j4g31"]
+
+[node name="MultiplayerMenu" type="Node2D"]
+script = ExtResource("1_4i4iw")
+
+[node name="LocalButton" type="Button" parent="."]
+offset_left = 519.0
+offset_top = 185.0
+offset_right = 708.0
+offset_bottom = 268.0
+text = "Local"
+
+[node name="LanButton" type="Button" parent="."]
+offset_left = 519.0
+offset_top = 308.0
+offset_right = 708.0
+offset_bottom = 391.0
+text = "One PlayerLAN"
+
+[node name="BackButton" type="Button" parent="."]
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 584.0
+offset_bottom = 584.0
+scale = Vector2(0.1, 0.1)
+icon = ExtResource("2_j4g31")
+
+[connection signal="pressed" from="LocalButton" to="." method="OnLocalButtonPressed"]
+[connection signal="pressed" from="LanButton" to="." method="OnMultiplayerButtonPressed"]
+[connection signal="pressed" from="BackButton" to="." method="OnBackButtonPressed"]

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5soym5uxxm55"]
+
+[ext_resource type="Texture2D" uid="uid://c3cuke5ojcbf7" path="res://assets/images/close.png" id="1_iwdd7"]
+
+[node name="DeadIcon" type="Sprite2D" groups=["DeadIcon"]]
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("1_iwdd7")

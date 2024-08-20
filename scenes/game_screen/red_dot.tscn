@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ccsj6r1qkoh18"]
+
+[ext_resource type="Texture2D" uid="uid://dipfvjlkct4ya" path="res://assets/images/red_dot.png" id="1_p8q0g"]
+
+[node name="RedDot" type="Sprite2D" groups=["RedDot"]]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_p8q0g")

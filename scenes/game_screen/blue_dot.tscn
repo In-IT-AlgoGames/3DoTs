@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://iaeyjkis41wn"]
+
+[ext_resource type="Texture2D" uid="uid://djl8ga4c6jxsq" path="res://assets/images/blue_dot.png" id="1_ox6mi"]
+
+[node name="BlueDot" type="Sprite2D" groups=["BlueDot"]]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_ox6mi")

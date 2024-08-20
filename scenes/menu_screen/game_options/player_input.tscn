@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://d35p0fn50sp31"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uysh4"]
+bg_color = Color(0.956863, 0.956863, 0.956863, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_upa6e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r85sa"]
+bg_color = Color(0.7602, 0.560443, 0.201832, 1)
+
+[node name="PlayerInput" type="Node2D"]
+
+[node name="PlayerName" type="LineEdit" parent="."]
+offset_right = 165.0
+offset_bottom = 36.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_uysh4")
+theme_override_styles/focus = SubResource("StyleBoxFlat_upa6e")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_r85sa")
+placeholder_text = "Player "
+clear_button_enabled = true

@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=3 uid="uid://blua41kwkjisl"]
+
+[ext_resource type="Script" path="res://scripts/Controllers/SceneSwitcher.cs" id="1_pdh7d"]
+[ext_resource type="PackedScene" uid="uid://cwbfs75o7144" path="res://scenes/menu_screen/main_menu/main_menu.tscn" id="2_8o6b2"]
+
+[sub_resource type="Animation" id="Animation_2rmnc"]
+resource_name = "fade_in"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3wp6b"]
+resource_name = "fade_out"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y5jn4"]
+_data = {
+"fade_in": SubResource("Animation_2rmnc"),
+"fade_out": SubResource("Animation_3wp6b")
+}
+
+[node name="SceneSwitcher" type="Node"]
+script = ExtResource("1_pdh7d")
+
+[node name="MainMenu" parent="." instance=ExtResource("2_8o6b2")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_right = 1281.0
+offset_bottom = 721.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_y5jn4")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="OnAnimationFinished"]

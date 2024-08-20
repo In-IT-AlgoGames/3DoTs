@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://qtw0a1hkhbvq"]
+
+[ext_resource type="Texture2D" uid="uid://dk3t6yyd4dt4p" path="res://assets/images/cell_texture.png" id="1_i5608"]
+
+[node name="Cell" type="TextureRect" groups=["Cell"]]
+custom_minimum_size = Vector2(10, 10)
+offset_right = 25.0
+offset_bottom = 25.0
+theme_type_variation = &"0"
+texture = ExtResource("1_i5608")
+stretch_mode = 5
