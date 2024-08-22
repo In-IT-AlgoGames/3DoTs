@@ -1,16 +1,13 @@
 using Godot;
 using System;
 
-public partial class GameScreen : Node2D
+public partial class OneplayerGameScreen : Node2D
 {
 	[Signal]
 	public delegate void ChangeSceneEventHandler(string currentScene);
 	
-	GameOptions gameOptions = new GameOptions();
-	Label player1;
-	Label player2;
-	Label player1Score;
-	Label player2Score;
+	OneplayerGameOptions gameOptions = new OneplayerGameOptions();
+	
 	Label timeLeftLabel;
 	Timer timer;
 	int timeLeft;
@@ -18,12 +15,21 @@ public partial class GameScreen : Node2D
 	// Game paused menu
 	CanvasLayer gamePausedMenu;
 	CanvasLayer gameOverMenu;
-	GameBoard gameBoardSection;
+	OneplayerGameBoard gameBoardSection;
+	
+	// Ressource et combo management
+	
+	Label coinsLabel;
+	Label diamondsLabel;
+	
+	
+	Label playerLabel;
+	Label computerLabel;
+	Label playerScoreLabel;
+	Label computerScoreLabel;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		player1 = GetNode<Label>("Player1/Player1Name");
-		player2 = GetNode<Label>("Player2/Player2Name");
 		timeLeftLabel = GetNode<Label>("TimeLeft");
 		timer = GetNode<Timer>("Timer");
 		// Pause game menu
@@ -33,19 +39,28 @@ public partial class GameScreen : Node2D
 		// game over menu
 		gameOverMenu = GetNode<CanvasLayer>("GameOverMenu");
 		gameOverMenu.Hide();
+		
+		// ressource displaying
+		coinsLabel = GetNode<Label>("Ressources/Coins/CoinValue");
+		diamondsLabel = GetNode<Label>("Ressources/Diamonds/DiamonValue");
+		coinsLabel.Text = LocalPlayer.coins.ToString();
+		diamondsLabel.Text = LocalPlayer.diamonds.ToString();
+		// score displaying 
+		playerLabel = GetNode("Player").GetNode<Label>("PlayerName");
+		computerLabel = GetNode("Computer").GetNode<Label>("Computer");
+		playerScoreLabel = GetNode<Label>("PlayerScore");
+		computerScoreLabel = GetNode<Label>("ComputerScore");
+		gameBoardSection.SetScoreLabel(playerScoreLabel, computerScoreLabel);
 		// Connect the Timer's timeout signal to a method
 		timer.Timeout += OnTimerTimeout;
-		timer.WaitTime = 1.0f;
-		player1Score = GetNode<Label>("Player1Score");
-		player2Score = GetNode<Label>("Player2Score");
-		gameBoardSection.SetScoreLabel(player1Score, player2Score);
-		
+		timer.WaitTime = 1.0f;  
 		SetUpScreen();
 		}
 
-	public void SetGameOptions(GameOptions gameOptions)
+	public void SetGameOptions(OneplayerGameOptions gameOptions)
 	{
-		gameBoardSection = GetNode<GameBoard>("GameBoardSection");
+		GD.Print(gameOptions.boardSize);
+		gameBoardSection = GetNode<OneplayerGameBoard>("GameBoardSection");
 		gameBoardSection.SetGameOptions(gameOptions);
 		
 		
@@ -56,9 +71,8 @@ public partial class GameScreen : Node2D
 
 	private void SetUpScreen()
 	{
-		timer.Start();
-		player1.Text = this.gameOptions.playerNames[0];
-		player2.Text = this.gameOptions.playerNames[1];
+		timer.Start(); 
+		playerLabel.Text = LocalPlayer.name;
 		UpdateTimeLeftLabel();
 	}
 
@@ -97,8 +111,7 @@ public partial class GameScreen : Node2D
 		GetTree().CallGroup("RedDot", "queue_free");
 		GetTree().CallGroup("DeadIcon", "queue_free");
 		GetTree().CallGroup("Cell", "queue_free");	
-		player1Score.Text = "0";
-		player2Score.Text = "0";
+		
 		gameBoardSection.NewGame();
 		gamePausedMenu.Hide();
 	}
@@ -106,15 +119,7 @@ public partial class GameScreen : Node2D
 	{
 		int[] score = gameBoardSection.GetScore();
 		Label winnerLabel = gameOverMenu.GetNode<Label>("WinnerLabel");
-		if (score[0] > score[1]) {
-			winnerLabel.Text = player1.Text + " Wins !!!";
-		}
-		else if (score[0] < score[1]){
-			winnerLabel.Text = player2.Text + " Wins !!!";			
-		}
-		else {
-			winnerLabel.Text = "it's draw !!!";
-		}
+		
 		
 		gameOverMenu.Show();
 		GetTree().Paused = true;
@@ -141,12 +146,12 @@ public partial class GameScreen : Node2D
 	private void OnGoOut()
 	{
 		GetTree().Paused = false;
-		EmitSignal(nameof(ChangeScene), "game_options");
+		EmitSignal(nameof(ChangeScene), "oneplayer_options");
 	}
 	private void GameOverGoOut()
 	{
 		GetTree().Paused = false;		
-		EmitSignal(nameof(ChangeScene), "game_options");
+		EmitSignal(nameof(ChangeScene), "oneplayer_options");
 	}
 	private void OnGameOverToMenu()
 	{
@@ -158,12 +163,11 @@ public partial class GameScreen : Node2D
 		OnRestartButton();
 		gameOverMenu.Hide();
 	}
+	
+	private void OnCombo()
+	{
+		LocalPlayer.coins ++;
+		coinsLabel.Text = LocalPlayer.coins.ToString();
+	}
 
 }
-
-
-
-
-
-
-

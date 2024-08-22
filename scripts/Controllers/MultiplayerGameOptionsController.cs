@@ -1,13 +1,15 @@
 using Godot;
 using System;
 
-public partial class GameOptionsChoice : CanvasLayer
+public partial class MultiplayerGameOptionsController : Node2D
 {
+	
 	[Signal]
 	public delegate void StartGameEventHandler(int boardSize, int gameTime, string player1, string player2);
 	// By default, it's 5 minutes
 	private int gameTime = 300;
 	private Label timerLabel;
+	
 	private LineEdit player1Edit;
 	private LineEdit player2Edit;
 	
@@ -15,11 +17,12 @@ public partial class GameOptionsChoice : CanvasLayer
 	private Button playButton;
 	[Export]
 	public ButtonGroup boardSizeButtonGroup { get; set; }
+	 
+	[Signal]
+	public delegate void ChangeSceneEventHandler(string currentScene);
 	
-	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		
 		Node timerNode = GetNode<Node>("GameTime").GetNode<Node>("Timer");
 		timerLabel = timerNode.GetNode<Label>("TimerLabel");
 		timerLabel.Text = ConvertSecondsToMinuteSecond(gameTime);
@@ -31,6 +34,7 @@ public partial class GameOptionsChoice : CanvasLayer
 		player1Edit.PlaceholderText = "Player 1";
 		player2Edit.Text = "Player 2";
 		player2Edit.PlaceholderText = "Player 2";
+		
 		
 		var increaseButton = timerNode.GetNode<Button>("IncreaseButton");
 		var decreaseButton = timerNode.GetNode<Button>("DecreaseButton");
@@ -44,9 +48,23 @@ public partial class GameOptionsChoice : CanvasLayer
 		{
 			button.Connect("pressed", new Callable(this, nameof(OnBoardSizeButtonPressed)));
 		}
+	
 	}
-		public GameOptions GetGameOptions(){
-			GameOptions gameOptions = new GameOptions();
+
+	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	public override void _Process(double delta)
+	{
+	}
+	public void OnBackButtonPressed()
+	{
+			EmitSignal(nameof(ChangeScene), "main_menu");
+	}
+	private void _OnPlayButtonPressed()
+	{
+		EmitSignal(nameof(ChangeScene), "game_board");
+	}
+	public MultiplayerGameOptions GetGameOptions(){
+			MultiplayerGameOptions gameOptions = new MultiplayerGameOptions();
 			string player1Name = (player1Edit.Text.Trim() != "")? player1Edit.Text.Trim() : "Player 1";
 			string player2Name = (player2Edit.Text.Trim() != "")? player2Edit.Text.Trim() : "Player 2";
 			
@@ -114,4 +132,11 @@ public partial class GameOptionsChoice : CanvasLayer
 		int seconds = totalSeconds % 60;
 		return $"{minutes:D2}:{seconds:D2}";
 	}
+	
 }
+
+
+
+
+
+

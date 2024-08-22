@@ -2,13 +2,13 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public class GameOptions : Object
+public class MultiplayerGameOptions : Object
 {
 	public int gameTime { get; set; }
 	public int boardSize { get; set; }
 	public List<string> playerNames { get; private set; } // Stores the names of players
 
-	public GameOptions()
+	public MultiplayerGameOptions()
 	{
 		// Initialize with default values
 		gameTime = 300;

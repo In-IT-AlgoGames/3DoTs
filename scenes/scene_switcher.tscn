@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://blua41kwkjisl"]
 
 [ext_resource type="Script" path="res://scripts/Controllers/SceneSwitcher.cs" id="1_pdh7d"]
-[ext_resource type="PackedScene" uid="uid://cwbfs75o7144" path="res://scenes/menu_screen/main_menu/main_menu.tscn" id="2_8o6b2"]
+[ext_resource type="PackedScene" uid="uid://cwbfs75o7144" path="res://scenes/menu_screen/menu/main_menu.tscn" id="2_8o6b2"]
 
 [sub_resource type="Animation" id="Animation_2rmnc"]
 resource_name = "fade_in"

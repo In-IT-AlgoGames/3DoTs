@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 
-public partial class GameBoard : GridContainer
+public partial class OneplayerGameBoard : GridContainer
 {
 	private int boardSize = 20;
 	private int cellSize = 25;
@@ -12,6 +12,10 @@ public partial class GameBoard : GridContainer
 	private Node2D currentDot;
 	private Vector2 position;
 	private int[,] gameBoardSate;
+
+	int player1KillingInRow = 0;
+	int player2KillingInRow = 0;
+	
 	// Adaptation du code de Mr bray 
 	Matrix gameBoardMatrix;
 	Player player1;
@@ -29,6 +33,8 @@ public partial class GameBoard : GridContainer
 	
 	List<Point> player1Points;
 	List<Point> player2Points;
+	
+	Computer computer;
 	// Pour bouger et redimensionner le plateau
 	private Vector2 startPosition;
 	private Vector2 initialPosition;
@@ -54,26 +60,29 @@ public partial class GameBoard : GridContainer
 	// game ending
 	[Signal]
 	public delegate void EndGameEventHandler();
+	
+	// combo signal 
+	[Signal]
+	public delegate void ComboEventHandler();
 	int turnNumber ;
 	
-	
 	public override void _Ready()
-	{
-		// NewGame();
+	{ 
 		Scale = new Vector2(1.2f, 1.2f); // Initialise le scale à 1,1 pour un affichage normal
-		
 	}
-	public void SetGameOptions(GameOptions gameOptions){
+
+	
+	public void SetGameOptions(OneplayerGameOptions gameOptions){
 		boardSize = gameOptions.boardSize;
 			
 		game = new Game();
 		game.SetId(1); // change this from a global class after	
-		
-		player1 = new Player(gameOptions.playerNames[0], 1);
+		player1 = new Player(LocalPlayer.name, 1);
 		player1.SetId(1);
-		player2 = new Player(gameOptions.playerNames[1], 2);
+		player2 = new Player("computer", 2);
 		player2.SetId(2);
 		
+		computer = new Computer(gameOptions.gameLevel);
 		NewGame();
 	}
 	
@@ -92,6 +101,10 @@ public partial class GameBoard : GridContainer
 		CreateCells();
 		SetCurrentDot();
 		Columns = boardSize; // set the gridContainer's column number
+		
+		player1KillingInRow = 0;
+		player2KillingInRow = 0;
+		
 		turnNumber = 0;
 		player1Points = new List<Point>();
 		player2Points = new List<Point>();
@@ -191,6 +204,50 @@ public partial class GameBoard : GridContainer
 		}
 	}
 
+// this is the part where the IA examine the gameboard and apply it
+	public override void _Process(double delta)
+	{
+		if (currentPlayerId == player2.GetId())  {
+				Point newPoint = computer.GetNextMove();
+				int x = newPoint.GetX();
+				int y = newPoint.GetY();
+				if (gameBoardSate[y, x] == 0) {
+						player2Points.Add(newPoint);
+				
+						newPoint.SetValue(currentPlayerId);
+						gameBoardMatrix.SetPoint(newPoint);
+						gameBoardSate[y , x] = currentPlayerId;
+						//restart player1 combo
+						player1KillingInRow = 0;
+		
+						
+						
+						float hPosition =  x * cellSize + (cellSize / 2);
+						float vPosition =  y * cellSize + (cellSize / 2);
+						position = new Vector2(hPosition, vPosition);
+						int initialScore = player2Score.GetScore();
+
+						List<Point> deadPoint = CheckAndKill(gameBoardMatrix, horizontalCheck, verticalCheck, diagonalCheck, antiDiagonalCheck, player2Points, player1Points, player2Score);
+
+						if (player2Score.GetScore() == initialScore) {
+							currentPlayerId = player1.GetId();
+						} 
+						else {
+							DrawDeadPoint(deadPoint);
+							player2KillingInRow += (player2Score.GetScore() - initialScore);
+							CheckCombo();
+						}
+						
+					MoveCurrentDot(position);
+					AddChild(currentDot);
+					SetCurrentDot();
+					UpdateScoreLabel();
+					CheckEndGame();
+				}
+			
+		}
+	}
+
 	public bool IsEdge(Vector2 mousePosition)
 	{
 		float leftEdge = Position.X;
@@ -221,7 +278,8 @@ public partial class GameBoard : GridContainer
 			gameBoardSate[y, x] = currentPlayerId;
 			if (currentPlayerId == player1.GetId()) {
 				 player1Points.Add(newPoint);
-
+				player2KillingInRow = 0;
+				
 				int initialScore = player1Score.GetScore();
 				
 				List<Point> deadPoint = CheckAndKill(gameBoardMatrix, horizontalCheck, verticalCheck, diagonalCheck, antiDiagonalCheck, player1Points, player2Points, player1Score);
@@ -230,33 +288,23 @@ public partial class GameBoard : GridContainer
 					currentPlayerId = player2.GetId();
 				} 
 				else {
-					DrawDeadPoint(deadPoint);					
+					DrawDeadPoint(deadPoint);		
+					player1KillingInRow += (player1Score.GetScore() - initialScore);
+					CheckCombo();
 				}
-			}
-			else {
-				player2Points.Add(newPoint);
-
-				int initialScore = player2Score.GetScore();
-
-				List<Point> deadPoint = CheckAndKill(gameBoardMatrix, horizontalCheck, verticalCheck, diagonalCheck, antiDiagonalCheck, player2Points, player1Points, player2Score);
-
-
-
-				if (player2Score.GetScore() == initialScore) {
-					currentPlayerId = player1.GetId();
-				} 
-				else {
-					DrawDeadPoint(deadPoint);
-				}
-			}
+				
 			MoveCurrentDot(position);
 			AddChild(currentDot);
 			SetCurrentDot();
 			UpdateScoreLabel();
 			CheckEndGame();
+			}
 		}
 	}
 	
+	public void CheckCombo(){
+		if (player1KillingInRow >= 3) EmitSignal("Combo");	
+	}
 	
 	private void SetCurrentDot()
 	{

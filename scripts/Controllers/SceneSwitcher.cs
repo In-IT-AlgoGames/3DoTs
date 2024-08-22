@@ -19,19 +19,28 @@ public partial class SceneSwitcher : Node
 	 public void OnChangeScene(string nextScene){
 		
 		string scene_path = "";
-		GD.Print("change scene");
+	
 		switch(nextScene){
 			case "game_options":
-				scene_path = "res://scenes/menu_screen/game_options/game_options.tscn";
+				scene_path = "res://scenes/menu_screen/game_options/multiplayer_options.tscn";
 				break;
 			case "multiplayer_menu":
-				scene_path = "res://scenes/menu_screen/main_menu/multiplayer_menu.tscn";
+				scene_path = "res://scenes/menu_screen/menu/multiplayer_menu.tscn";
 				break;
 			case "main_menu":
-				scene_path = "res://scenes/menu_screen/main_menu/main_menu.tscn";
+				scene_path = "res://scenes/menu_screen/menu/main_menu.tscn";
 				break;
 			case "game_board":
-				scene_path = "res://scenes/game_screen/game_screen.tscn";
+				scene_path = "res://scenes/game_screen/game_screen_multiplayer.tscn";
+				break;
+			case "oneplayer_game_board":
+				scene_path = "res://scenes/game_screen/game_screen_oneplayer.tscn";
+				break;
+			case "oneplayer_options":
+				scene_path = "res://scenes/menu_screen/game_options/oneplayer_options.tscn";
+				break;
+			case "joker_menu":
+				scene_path = "res://scenes/menu_screen/menu/joker_menu.tscn";
 				break;
 			default:
 				GD.Print("scene inconnu");
@@ -39,12 +48,23 @@ public partial class SceneSwitcher : Node
 		}
 		if(nextScene == "game_board") 
 		{
-			GameScreen gameScreen = (GameScreen) ((PackedScene) ResourceLoader.Load(scene_path)).Instantiate();
-			GameOptionsController gameOptionsCon = (GameOptionsController) currentNode;
+			MultiplayerGameScreen multiplayerGameScreen = (MultiplayerGameScreen) ((PackedScene) ResourceLoader.Load(scene_path)).Instantiate();
+			MultiplayerGameOptionsController gameOptionsCon = (MultiplayerGameOptionsController) currentNode;
 			
-			GameOptions gameOptions = gameOptionsCon.GetGameOptions();
-			gameScreen.SetGameOptions(gameOptions);
-			nextNode = gameScreen;
+			MultiplayerGameOptions gameOptions = gameOptionsCon.GetGameOptions();
+			multiplayerGameScreen.SetGameOptions(gameOptions);
+			nextNode = multiplayerGameScreen;
+			GD.Print(gameOptions.boardSize);
+			this.nextScene = nextScene;
+		}
+		else if (nextScene == "oneplayer_game_board"){
+			OneplayerGameScreen oneplayerGameScreen = (OneplayerGameScreen) ((PackedScene) ResourceLoader.Load(scene_path)).Instantiate();
+			OneplayerGameOptionsController gameOptionsCon = (OneplayerGameOptionsController) currentNode;
+			
+			OneplayerGameOptions gameOptions = gameOptionsCon.GetGameOptions();
+			
+			oneplayerGameScreen.SetGameOptions(gameOptions);
+			nextNode = oneplayerGameScreen;
 			this.nextScene = nextScene;
 		}
 		else {

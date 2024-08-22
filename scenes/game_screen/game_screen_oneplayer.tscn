@@ -1,25 +1,33 @@
-[gd_scene load_steps=16 format=3 uid="uid://bgcp4kqh2ptar"]
+[gd_scene load_steps=18 format=3 uid="uid://mruyrbyp7ome"]
 
-[ext_resource type="PackedScene" uid="uid://cdcq7uxq8j3vn" path="res://scenes/game_screen/game_board.tscn" id="1_8rpke"]
-[ext_resource type="Script" path="res://scripts/Controllers/GameScreen.cs" id="1_gwixl"]
-[ext_resource type="Theme" uid="uid://byy1nm0wha7ja" path="res://assets/button_theme.tres" id="2_0jnuo"]
-[ext_resource type="Texture2D" uid="uid://bpepsg31nhklw" path="res://assets/images/pause.png" id="2_pk16y"]
-[ext_resource type="PackedScene" uid="uid://b5soym5uxxm55" path="res://scenes/game_screen/dead_icon.tscn" id="3_8tvsa"]
-[ext_resource type="Texture2D" uid="uid://xd7yyjxyr77x" path="res://assets/images/stone_blue.png" id="4_kdkyl"]
-[ext_resource type="Texture2D" uid="uid://bpscj4tnbiwdj" path="res://assets/images/stone_yellow.png" id="5_mxoke"]
-[ext_resource type="Texture2D" uid="uid://dipfvjlkct4ya" path="res://assets/images/red_dot.png" id="6_1l4sa"]
-[ext_resource type="Texture2D" uid="uid://djl8ga4c6jxsq" path="res://assets/images/blue_dot.png" id="7_rmd3n"]
-[ext_resource type="PackedScene" uid="uid://ielnk5kfgsd1" path="res://scenes/game_screen/pause_game.tscn" id="10_ncwyp"]
-[ext_resource type="Texture2D" uid="uid://bsy3a8npaq01l" path="res://assets/images/idea.png" id="11_5yl5a"]
-[ext_resource type="PackedScene" uid="uid://s1la5f78r66q" path="res://scenes/game_screen/game_over_menu.tscn" id="11_mb1so"]
-[ext_resource type="Texture2D" uid="uid://cb8mcatnlt3ye" path="res://assets/images/move.png" id="12_gncts"]
-[ext_resource type="Texture2D" uid="uid://co4fhpxacbvjk" path="res://assets/images/plus.png" id="13_cb6t3"]
-[ext_resource type="Texture2D" uid="uid://dh1o2h5s6w26f" path="res://assets/images/sniper.png" id="14_c6wo5"]
+[ext_resource type="Script" path="res://scripts/Controllers/OneplayerGameScreen.cs" id="1_atnf4"]
+[ext_resource type="PackedScene" uid="uid://cdcq7uxq8j3vn" path="res://scenes/game_screen/game_board_multiplayer.tscn" id="2_qljml"]
+[ext_resource type="Texture2D" uid="uid://dcgv24t1dc780" path="res://assets/images/wood_plan.jpg" id="2_qorhl"]
+[ext_resource type="PackedScene" uid="uid://b5soym5uxxm55" path="res://scenes/game_screen/dead_icon.tscn" id="3_aktai"]
+[ext_resource type="Script" path="res://scripts/Controllers/OneplayerGameBoard.cs" id="3_uthby"]
+[ext_resource type="Theme" uid="uid://byy1nm0wha7ja" path="res://assets/button_theme.tres" id="4_mdd5m"]
+[ext_resource type="Texture2D" uid="uid://bpepsg31nhklw" path="res://assets/images/pause.png" id="5_837y2"]
+[ext_resource type="Texture2D" uid="uid://bpscj4tnbiwdj" path="res://assets/images/stone_yellow.png" id="6_x16q7"]
+[ext_resource type="Texture2D" uid="uid://xd7yyjxyr77x" path="res://assets/images/stone_blue.png" id="7_ac4mj"]
+[ext_resource type="Texture2D" uid="uid://dipfvjlkct4ya" path="res://assets/images/red_dot.png" id="8_me4hm"]
+[ext_resource type="Texture2D" uid="uid://djl8ga4c6jxsq" path="res://assets/images/blue_dot.png" id="9_fgacd"]
+[ext_resource type="PackedScene" uid="uid://ielnk5kfgsd1" path="res://scenes/game_screen/pause_game.tscn" id="10_fnwww"]
+[ext_resource type="PackedScene" uid="uid://s1la5f78r66q" path="res://scenes/game_screen/game_over_menu.tscn" id="11_0ur1o"]
+[ext_resource type="Texture2D" uid="uid://bsy3a8npaq01l" path="res://assets/images/idea.png" id="12_kjjkq"]
+[ext_resource type="Texture2D" uid="uid://cb8mcatnlt3ye" path="res://assets/images/move.png" id="13_n2ghj"]
+[ext_resource type="Texture2D" uid="uid://co4fhpxacbvjk" path="res://assets/images/plus.png" id="14_ruchx"]
+[ext_resource type="Texture2D" uid="uid://dh1o2h5s6w26f" path="res://assets/images/sniper.png" id="15_2ryy3"]
 
 [node name="GameScreen" type="Node2D"]
-script = ExtResource("1_gwixl")
+script = ExtResource("1_atnf4")
 
-[node name="GameBoardSection" parent="." instance=ExtResource("1_8rpke")]
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1285.0
+offset_bottom = 715.0
+texture = ExtResource("2_qorhl")
+expand_mode = 1
+
+[node name="GameBoardSection" parent="." instance=ExtResource("2_qljml")]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -31,7 +39,8 @@ offset_right = 619.0
 offset_bottom = 469.0
 grow_horizontal = 2
 grow_vertical = 0
-deadDotScene = ExtResource("3_8tvsa")
+script = ExtResource("3_uthby")
+deadDotScene = ExtResource("3_aktai")
 
 [node name="PauseButton" type="Button" parent="."]
 offset_left = 22.0
@@ -39,14 +48,14 @@ offset_top = 24.0
 offset_right = 542.0
 offset_bottom = 544.0
 scale = Vector2(0.1, 0.1)
-theme = ExtResource("2_0jnuo")
-icon = ExtResource("2_pk16y")
+theme = ExtResource("4_mdd5m")
+icon = ExtResource("5_837y2")
 
 [node name="Ressources" type="HBoxContainer" parent="."]
-offset_left = 26.0
-offset_top = 650.0
-offset_right = 233.0
-offset_bottom = 715.0
+offset_left = 1023.0
+offset_top = 57.0
+offset_right = 1230.0
+offset_bottom = 122.0
 
 [node name="Coins" type="HBoxContainer" parent="Ressources"]
 layout_mode = 2
@@ -55,22 +64,22 @@ alignment = 2
 
 [node name="TextureRect" type="TextureRect" parent="Ressources/Coins"]
 layout_mode = 2
-texture = ExtResource("5_mxoke")
+texture = ExtResource("6_x16q7")
 
 [node name="CoinValue" type="Label" parent="Ressources/Coins"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "20"
 
-[node name="Diamond" type="HBoxContainer" parent="Ressources"]
+[node name="Diamonds" type="HBoxContainer" parent="Ressources"]
 layout_mode = 2
 alignment = 2
 
-[node name="TextureRect" type="TextureRect" parent="Ressources/Diamond"]
+[node name="TextureRect" type="TextureRect" parent="Ressources/Diamonds"]
 layout_mode = 2
-texture = ExtResource("4_kdkyl")
+texture = ExtResource("7_ac4mj")
 
-[node name="DiamonValue" type="Label" parent="Ressources/Diamond"]
+[node name="DiamonValue" type="Label" parent="Ressources/Diamonds"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "20"
@@ -92,22 +101,22 @@ offset_bottom = 700.0
 theme_override_font_sizes/font_size = 36
 text = "00:00"
 
-[node name="Player1" type="HBoxContainer" parent="."]
+[node name="Player" type="HBoxContainer" parent="."]
 offset_left = 38.0
 offset_top = 293.0
 offset_right = 156.0
 offset_bottom = 316.0
 
-[node name="TextureRect" type="TextureRect" parent="Player1"]
+[node name="TextureRect" type="TextureRect" parent="Player"]
 layout_mode = 2
-texture = ExtResource("6_1l4sa")
+texture = ExtResource("8_me4hm")
 expand_mode = 2
 
-[node name="Player1Name" type="Label" parent="Player1"]
+[node name="PlayerName" type="Label" parent="Player"]
 layout_mode = 2
 text = "Player 1 "
 
-[node name="Player1Score" type="Label" parent="."]
+[node name="PlayerScore" type="Label" parent="."]
 offset_left = 72.0
 offset_top = 313.0
 offset_right = 112.0
@@ -115,7 +124,7 @@ offset_bottom = 390.0
 theme_override_font_sizes/font_size = 56
 text = "0"
 
-[node name="Player2" type="HBoxContainer" parent="."]
+[node name="Computer" type="HBoxContainer" parent="."]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -126,16 +135,16 @@ offset_bottom = 330.0
 grow_horizontal = 2
 size_flags_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="Player2"]
+[node name="TextureRect" type="TextureRect" parent="Computer"]
 layout_mode = 2
-texture = ExtResource("7_rmd3n")
+texture = ExtResource("9_fgacd")
 expand_mode = 2
 
-[node name="Player2Name" type="Label" parent="Player2"]
+[node name="Computer" type="Label" parent="Computer"]
 layout_mode = 2
-text = "Player 2"
+text = "Computer"
 
-[node name="Player2Score" type="Label" parent="."]
+[node name="ComputerScore" type="Label" parent="."]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -149,10 +158,10 @@ text = "0"
 
 [node name="Timer" type="Timer" parent="."]
 
-[node name="PauseGame" parent="." instance=ExtResource("10_ncwyp")]
+[node name="PauseGame" parent="." instance=ExtResource("10_fnwww")]
 process_mode = 2
 
-[node name="GameOverMenu" parent="." instance=ExtResource("11_mb1so")]
+[node name="GameOverMenu" parent="." instance=ExtResource("11_0ur1o")]
 
 [node name="Node" type="Node" parent="."]
 
@@ -163,7 +172,7 @@ position = Vector2(462, 650)
 offset_right = 72.0
 offset_bottom = 72.0
 scale = Vector2(0.65, 0.65)
-icon = ExtResource("11_5yl5a")
+icon = ExtResource("12_kjjkq")
 
 [node name="Number" type="Label" parent="Node/Hint"]
 offset_right = 40.0
@@ -176,7 +185,7 @@ position = Vector2(580, 650)
 offset_right = 520.0
 offset_bottom = 520.0
 scale = Vector2(0.08, 0.08)
-icon = ExtResource("12_gncts")
+icon = ExtResource("13_n2ghj")
 
 [node name="Number" type="Label" parent="Node/Move"]
 offset_right = 40.0
@@ -189,7 +198,7 @@ position = Vector2(698, 650)
 offset_right = 520.0
 offset_bottom = 520.0
 scale = Vector2(0.08, 0.08)
-icon = ExtResource("13_cb6t3")
+icon = ExtResource("14_ruchx")
 
 [node name="Number" type="Label" parent="Node/Additional"]
 offset_right = 40.0
@@ -202,12 +211,13 @@ position = Vector2(800, 650)
 offset_right = 8.0
 offset_bottom = 8.0
 scale = Vector2(0.08, 0.08)
-icon = ExtResource("14_c6wo5")
+icon = ExtResource("15_2ryy3")
 
 [node name="Number" type="Label" parent="Node/SniperMode"]
 offset_right = 40.0
 offset_bottom = 23.0
 
+[connection signal="Combo" from="GameBoardSection" to="." method="OnCombo"]
 [connection signal="EndGame" from="GameBoardSection" to="." method="OnEndGame"]
 [connection signal="pressed" from="PauseButton" to="." method="_on_pause_button_pressed"]
 [connection signal="GoOut" from="PauseGame" to="." method="OnGoOut"]

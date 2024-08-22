@@ -1,0 +1,228 @@
+[gd_scene load_steps=14 format=3 uid="uid://7xm66qyur7dv"]
+
+[ext_resource type="Script" path="res://scripts/Controllers/MultiplayerGameOptionsController.cs" id="1_x1ts7"]
+[ext_resource type="ButtonGroup" uid="uid://bq3eihtm4xuct" path="res://scenes/menu_screen/game_options/board_size_button_group.tres" id="3_37djc"]
+[ext_resource type="Texture2D" uid="uid://dcgv24t1dc780" path="res://assets/images/wood_plan.jpg" id="3_nbcft"]
+[ext_resource type="Texture2D" uid="uid://bsy3a8npaq01l" path="res://assets/images/idea.png" id="4_hipqj"]
+[ext_resource type="Texture2D" uid="uid://cb8mcatnlt3ye" path="res://assets/images/move.png" id="5_du5p2"]
+[ext_resource type="Texture2D" uid="uid://co4fhpxacbvjk" path="res://assets/images/plus.png" id="6_hd3qa"]
+[ext_resource type="Texture2D" uid="uid://dh1o2h5s6w26f" path="res://assets/images/sniper.png" id="7_hrhp2"]
+[ext_resource type="PackedScene" uid="uid://d35p0fn50sp31" path="res://scenes/menu_screen/game_options/player_input.tscn" id="8_pgyfm"]
+[ext_resource type="PackedScene" uid="uid://ccsj6r1qkoh18" path="res://scenes/game_screen/red_dot.tscn" id="9_u1y3n"]
+[ext_resource type="PackedScene" uid="uid://iaeyjkis41wn" path="res://scenes/game_screen/blue_dot.tscn" id="10_h5rc2"]
+[ext_resource type="Texture2D" uid="uid://cb27udf0duobr" path="res://assets/images/left-arrow.png" id="11_fv52n"]
+[ext_resource type="Texture2D" uid="uid://bp1m33oidrnar" path="res://assets/images/arrow-point-to-right.png" id="12_bukbj"]
+[ext_resource type="Texture2D" uid="uid://4s1dt5cijnyu" path="res://assets/images/arrow-back.svg" id="13_r52b3"]
+
+[node name="GameOptionsController" type="Node2D"]
+script = ExtResource("1_x1ts7")
+boardSizeButtonGroup = ExtResource("3_37djc")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1285.0
+offset_bottom = 715.0
+texture = ExtResource("3_nbcft")
+expand_mode = 1
+
+[node name="Surplus" type="Node2D" parent="."]
+position = Vector2(246, 39)
+
+[node name="Hint" type="Node2D" parent="Surplus"]
+position = Vector2(733, 176)
+
+[node name="HintButton" type="Button" parent="Surplus/Hint"]
+offset_right = 72.0
+offset_bottom = 72.0
+scale = Vector2(0.65, 0.65)
+icon = ExtResource("4_hipqj")
+
+[node name="Number" type="Label" parent="Surplus/Hint"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Move" type="Node2D" parent="Surplus"]
+position = Vector2(736, 244)
+
+[node name="MovetButton" type="Button" parent="Surplus/Move"]
+offset_right = 520.0
+offset_bottom = 520.0
+scale = Vector2(0.08, 0.08)
+icon = ExtResource("5_du5p2")
+
+[node name="Number" type="Label" parent="Surplus/Move"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Additional" type="Node2D" parent="Surplus"]
+position = Vector2(740, 311)
+
+[node name="AdditionalButton" type="Button" parent="Surplus/Additional"]
+offset_right = 520.0
+offset_bottom = 520.0
+scale = Vector2(0.08, 0.08)
+icon = ExtResource("6_hd3qa")
+metadata/_edit_use_anchors_ = true
+
+[node name="Number" type="Label" parent="Surplus/Additional"]
+offset_right = 40.0
+offset_bottom = 23.0
+metadata/_edit_use_anchors_ = true
+
+[node name="SniperMode" type="Node2D" parent="Surplus"]
+position = Vector2(740, 379)
+
+[node name="SniperModeButton" type="Button" parent="Surplus/SniperMode"]
+offset_right = 8.0
+offset_bottom = 8.0
+scale = Vector2(0.08, 0.08)
+icon = ExtResource("7_hrhp2")
+
+[node name="Number" type="Label" parent="Surplus/SniperMode"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Player1Input" parent="." instance=ExtResource("8_pgyfm")]
+position = Vector2(1048, 31)
+
+[node name="Label" type="Label" parent="Player1Input"]
+offset_left = -111.0
+offset_right = -18.0
+offset_bottom = 34.0
+theme_override_font_sizes/font_size = 24
+text = "Player 1"
+
+[node name="RedDot" parent="Player1Input" instance=ExtResource("9_u1y3n")]
+position = Vector2(-135, 16)
+scale = Vector2(0.5, 0.5)
+
+[node name="Player2Input" parent="." instance=ExtResource("8_pgyfm")]
+position = Vector2(1046, 94)
+
+[node name="Label" type="Label" parent="Player2Input"]
+offset_left = -110.0
+offset_top = -3.0
+offset_right = -17.0
+offset_bottom = 31.0
+theme_override_font_sizes/font_size = 24
+text = "Player 2
+"
+
+[node name="BlueDot" parent="Player2Input" instance=ExtResource("10_h5rc2")]
+position = Vector2(-133, 16)
+scale = Vector2(0.5, 0.5)
+
+[node name="PlayButton" type="Button" parent="."]
+offset_left = 973.0
+offset_top = 579.0
+offset_right = 1213.0
+offset_bottom = 659.0
+theme_override_font_sizes/font_size = 24
+text = "Play"
+
+[node name="BoardSizeControl" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 167.0
+offset_top = 17.0
+offset_right = 167.0
+offset_bottom = 17.0
+grow_vertical = 2
+
+[node name="15x15" type="Button" parent="BoardSizeControl"]
+layout_mode = 0
+offset_top = 57.0
+offset_right = 320.0
+offset_bottom = 177.0
+theme_override_font_sizes/font_size = 32
+toggle_mode = true
+button_pressed = true
+button_group = ExtResource("3_37djc")
+text = "15x15"
+
+[node name="20x20" type="Button" parent="BoardSizeControl"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 212.0
+offset_right = 319.0
+offset_bottom = 332.0
+theme_override_font_sizes/font_size = 32
+toggle_mode = true
+button_group = ExtResource("3_37djc")
+text = "20x20
+"
+
+[node name="25x25" type="Button" parent="BoardSizeControl"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = 369.0
+offset_right = 317.0
+offset_bottom = 489.0
+theme_override_font_sizes/font_size = 32
+toggle_mode = true
+button_group = ExtResource("3_37djc")
+text = "25x25
+"
+
+[node name="30x30" type="Button" parent="BoardSizeControl"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = 511.0
+offset_right = 317.0
+offset_bottom = 631.0
+theme_override_font_sizes/font_size = 32
+toggle_mode = true
+button_group = ExtResource("3_37djc")
+text = "30x30
+"
+
+[node name="GameTime" type="Node2D" parent="."]
+position = Vector2(1061, 362)
+
+[node name="Label" type="Label" parent="GameTime"]
+offset_left = -10.0
+offset_top = 82.0
+offset_right = 66.0
+offset_bottom = 127.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 32
+text = "TIME"
+
+[node name="Timer" type="Node2D" parent="GameTime"]
+position = Vector2(-65, 129)
+
+[node name="DecreaseButton" type="Button" parent="GameTime/Timer"]
+offset_left = -23.0
+offset_top = 2.0
+offset_right = 49.0
+offset_bottom = 74.0
+scale = Vector2(0.7, 0.7)
+icon = ExtResource("11_fv52n")
+
+[node name="TimerLabel" type="Label" parent="GameTime/Timer"]
+offset_left = 52.0
+offset_top = 4.0
+offset_right = 133.0
+offset_bottom = 49.0
+theme_override_font_sizes/font_size = 32
+text = "05:30"
+
+[node name="IncreaseButton" type="Button" parent="GameTime/Timer"]
+offset_left = 160.0
+offset_top = 3.0
+offset_right = 232.0
+offset_bottom = 75.0
+scale = Vector2(0.7, 0.7)
+icon = ExtResource("12_bukbj")
+
+[node name="BackButton" type="Button" parent="."]
+offset_left = 57.0
+offset_top = 27.0
+offset_right = 321.0
+offset_bottom = 291.0
+scale = Vector2(0.2, 0.2)
+icon = ExtResource("13_r52b3")
+flat = true
+
+[connection signal="pressed" from="PlayButton" to="." method="_OnPlayButtonPressed"]
+[connection signal="pressed" from="BackButton" to="." method="OnBackButtonPressed"]

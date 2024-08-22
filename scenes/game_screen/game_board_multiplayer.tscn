@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cdcq7uxq8j3vn"]
 
-[ext_resource type="Script" path="res://scripts/Controllers/GameBoard.cs" id="1_lmjvy"]
+[ext_resource type="Script" path="res://scripts/Controllers/MultiplayerGameBoard.cs" id="1_lmjvy"]
 [ext_resource type="PackedScene" uid="uid://qtw0a1hkhbvq" path="res://scenes/game_screen/cell.tscn" id="1_ubqxx"]
 [ext_resource type="PackedScene" uid="uid://iaeyjkis41wn" path="res://scenes/game_screen/blue_dot.tscn" id="3_3gv2k"]
 [ext_resource type="PackedScene" uid="uid://ccsj6r1qkoh18" path="res://scenes/game_screen/red_dot.tscn" id="4_nnhxn"]

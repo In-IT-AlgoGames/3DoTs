@@ -1,0 +1,269 @@
+[gd_scene load_steps=13 format=3 uid="uid://07lb0c6hp08u"]
+
+[ext_resource type="Script" path="res://scripts/Controllers/OneplayerGameOptionsController.cs" id="1_nlcoc"]
+[ext_resource type="ButtonGroup" uid="uid://bq3eihtm4xuct" path="res://scenes/menu_screen/game_options/board_size_button_group.tres" id="3_8aura"]
+[ext_resource type="Texture2D" uid="uid://dcgv24t1dc780" path="res://assets/images/wood_plan.jpg" id="5_jglyy"]
+[ext_resource type="Texture2D" uid="uid://cb27udf0duobr" path="res://assets/images/left-arrow.png" id="7_sdlo5"]
+[ext_resource type="Texture2D" uid="uid://bp1m33oidrnar" path="res://assets/images/arrow-point-to-right.png" id="8_2qfl1"]
+[ext_resource type="Texture2D" uid="uid://4s1dt5cijnyu" path="res://assets/images/arrow-back.svg" id="9_187d4"]
+[ext_resource type="ButtonGroup" uid="uid://buty76nhabnd" path="res://scenes/menu_screen/game_options/difficulty_button_group.tres" id="11_t5qi1"]
+[ext_resource type="ButtonGroup" uid="uid://ii7b542rlgso" path="res://scenes/menu_screen/game_options/dot_color_button_group.tres" id="12_bg2pr"]
+[ext_resource type="Texture2D" uid="uid://dipfvjlkct4ya" path="res://assets/images/red_dot.png" id="13_72rm4"]
+[ext_resource type="Texture2D" uid="uid://djl8ga4c6jxsq" path="res://assets/images/blue_dot.png" id="14_kvfa3"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_8uiqm"]
+color = Color(0.146295, 0.103001, 0.0445021, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_sam60"]
+font_names = PackedStringArray("Monospace")
+subpixel_positioning = 0
+
+[node name="OneplayerGameOptionsController" type="Node2D"]
+script = ExtResource("1_nlcoc")
+boardSizeButtonGroup = ExtResource("3_8aura")
+difficultyButtonGroup = ExtResource("11_t5qi1")
+dotColorButtonGroup = ExtResource("12_bg2pr")
+metadata/_edit_horizontal_guides_ = [-240.0]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1285.0
+offset_bottom = 715.0
+texture = ExtResource("5_jglyy")
+expand_mode = 1
+
+[node name="difficulty" type="HBoxContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 160.0
+offset_top = 617.0
+offset_right = 880.0
+offset_bottom = 655.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 0
+
+[node name="Easy" type="Button" parent="difficulty"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 19
+theme_override_styles/hover = SubResource("StyleBoxLine_8uiqm")
+toggle_mode = true
+button_pressed = true
+button_group = ExtResource("11_t5qi1")
+text = "Easy"
+
+[node name="Medium" type="Button" parent="difficulty"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 19
+theme_override_styles/hover = SubResource("StyleBoxLine_8uiqm")
+toggle_mode = true
+button_group = ExtResource("11_t5qi1")
+text = "Medium"
+
+[node name="Hard" type="Button" parent="difficulty"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 19
+theme_override_styles/hover = SubResource("StyleBoxLine_8uiqm")
+toggle_mode = true
+button_group = ExtResource("11_t5qi1")
+text = "Hard"
+
+[node name="Title" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 275.0
+offset_top = 487.0
+offset_right = 755.0
+offset_bottom = 597.0
+grow_horizontal = 2
+theme_override_fonts/font = SubResource("SystemFont_sam60")
+theme_override_font_sizes/font_size = 80
+text = "Difficulty"
+
+[node name="Title2" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 276.0
+offset_top = 15.0
+offset_right = 756.0
+offset_bottom = 125.0
+grow_horizontal = 2
+theme_override_fonts/font = SubResource("SystemFont_sam60")
+theme_override_font_sizes/font_size = 80
+text = "board"
+horizontal_alignment = 1
+
+[node name="Title3" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 989.0
+offset_top = 53.0
+offset_right = 1155.0
+offset_bottom = 82.0
+grow_horizontal = 2
+theme_override_fonts/font = SubResource("SystemFont_sam60")
+theme_override_font_sizes/font_size = 24
+text = "Color"
+horizontal_alignment = 1
+
+[node name="Title4" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 995.0
+offset_top = 169.0
+offset_right = 1161.0
+offset_bottom = 198.0
+grow_horizontal = 2
+theme_override_fonts/font = SubResource("SystemFont_sam60")
+theme_override_font_sizes/font_size = 24
+text = "Joker"
+horizontal_alignment = 1
+
+[node name="DotColor" type="Node2D" parent="."]
+position = Vector2(967, 86)
+
+[node name="RedButton" type="Button" parent="DotColor"]
+offset_left = 9.0
+offset_right = 65.0
+offset_bottom = 56.0
+toggle_mode = true
+button_pressed = true
+button_group = ExtResource("12_bg2pr")
+icon = ExtResource("13_72rm4")
+alignment = 2
+
+[node name="BlueButton" type="Button" parent="DotColor"]
+offset_left = 148.0
+offset_top = 4.0
+offset_right = 204.0
+offset_bottom = 60.0
+toggle_mode = true
+button_group = ExtResource("12_bg2pr")
+icon = ExtResource("14_kvfa3")
+
+[node name="PlayButton" type="Button" parent="."]
+offset_left = 973.0
+offset_top = 579.0
+offset_right = 1213.0
+offset_bottom = 659.0
+theme_override_font_sizes/font_size = 24
+text = "Play"
+
+[node name="BoardSizeControl" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 167.0
+offset_top = 17.0
+offset_right = 167.0
+offset_bottom = 17.0
+grow_vertical = 2
+
+[node name="15x15" type="Button" parent="BoardSizeControl"]
+layout_mode = 0
+offset_top = 121.0
+offset_right = 190.0
+offset_bottom = 174.0
+theme_override_font_sizes/font_size = 32
+toggle_mode = true
+button_pressed = true
+button_group = ExtResource("3_8aura")
+text = "15x15"
+
+[node name="20x20" type="Button" parent="BoardSizeControl"]
+layout_mode = 0
+offset_left = 223.0
+offset_top = 122.0
+offset_right = 409.0
+offset_bottom = 175.0
+theme_override_font_sizes/font_size = 32
+toggle_mode = true
+button_group = ExtResource("3_8aura")
+text = "20x20
+"
+
+[node name="25x25" type="Button" parent="BoardSizeControl"]
+layout_mode = 0
+offset_left = 425.0
+offset_top = 121.0
+offset_right = 619.0
+offset_bottom = 174.0
+theme_override_font_sizes/font_size = 32
+toggle_mode = true
+button_group = ExtResource("3_8aura")
+text = "25x25
+"
+
+[node name="30x30" type="Button" parent="BoardSizeControl"]
+layout_mode = 0
+offset_left = -6.0
+offset_top = 194.0
+offset_right = 184.0
+offset_bottom = 247.0
+theme_override_font_sizes/font_size = 32
+toggle_mode = true
+button_group = ExtResource("3_8aura")
+text = "30x30
+"
+
+[node name="GameTime" type="Node2D" parent="."]
+position = Vector2(1000, 460)
+
+[node name="Label" type="Label" parent="GameTime"]
+offset_left = 55.0
+offset_right = 131.0
+offset_bottom = 45.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 32
+text = "TIME"
+
+[node name="Timer" type="Node2D" parent="GameTime"]
+position = Vector2(0, 50)
+
+[node name="DecreaseButton" type="Button" parent="GameTime/Timer"]
+offset_left = -23.0
+offset_top = 2.0
+offset_right = 49.0
+offset_bottom = 74.0
+scale = Vector2(0.7, 0.7)
+icon = ExtResource("7_sdlo5")
+
+[node name="TimerLabel" type="Label" parent="GameTime/Timer"]
+offset_left = 52.0
+offset_top = 4.0
+offset_right = 133.0
+offset_bottom = 49.0
+theme_override_font_sizes/font_size = 32
+text = "05:30"
+
+[node name="IncreaseButton" type="Button" parent="GameTime/Timer"]
+offset_left = 160.0
+offset_top = 3.0
+offset_right = 232.0
+offset_bottom = 75.0
+scale = Vector2(0.7, 0.7)
+icon = ExtResource("8_2qfl1")
+
+[node name="BackButton" type="Button" parent="."]
+offset_left = 57.0
+offset_top = 27.0
+offset_right = 321.0
+offset_bottom = 291.0
+scale = Vector2(0.2, 0.2)
+icon = ExtResource("9_187d4")
+flat = true
+
+[connection signal="pressed" from="PlayButton" to="." method="_OnPlayButtonPressed"]
+[connection signal="pressed" from="BackButton" to="." method="OnBackButtonPressed"]

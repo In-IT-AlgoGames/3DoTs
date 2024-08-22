@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://er57gfpgbsq2"]
+
+[ext_resource type="Script" path="res://scripts/Controllers/OneplayerGameBoard.cs" id="1_pm88t"]
+
+[node name="GameBoardOnplayer" type="GridContainer"]
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+script = ExtResource("1_pm88t")

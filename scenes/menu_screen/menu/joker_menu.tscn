@@ -1,0 +1,161 @@
+[gd_scene load_steps=7 format=3 uid="uid://i4in47hyhoq"]
+
+[ext_resource type="Texture2D" uid="uid://bsy3a8npaq01l" path="res://assets/images/idea.png" id="1_kwsge"]
+[ext_resource type="Script" path="res://scripts/Controllers/JokerMenu.cs" id="1_pe4yf"]
+[ext_resource type="Texture2D" uid="uid://cb8mcatnlt3ye" path="res://assets/images/move.png" id="2_nghcq"]
+[ext_resource type="Texture2D" uid="uid://co4fhpxacbvjk" path="res://assets/images/plus.png" id="3_6xfas"]
+[ext_resource type="Texture2D" uid="uid://dh1o2h5s6w26f" path="res://assets/images/sniper.png" id="4_qrmjk"]
+[ext_resource type="Texture2D" uid="uid://b8j3xfsg4myw0" path="res://assets/images/log-out.png" id="5_42phf"]
+
+[node name="JokerMenu" type="Node2D"]
+script = ExtResource("1_pe4yf")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 505.0
+offset_top = 48.0
+offset_right = 585.0
+offset_bottom = 93.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "Joker"
+
+[node name="Button" type="Button" parent="."]
+offset_left = 162.0
+offset_top = 51.0
+offset_right = 682.0
+offset_bottom = 571.0
+scale = Vector2(0.1, 0.1)
+icon = ExtResource("5_42phf")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 280.0
+offset_top = 183.0
+offset_right = 889.0
+offset_bottom = 654.0
+
+[node name="Hint" type="Node2D" parent="Panel"]
+position = Vector2(65, 50)
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel/Hint"]
+position = Vector2(3, 18)
+texture = ExtResource("1_kwsge")
+
+[node name="Name" type="Label" parent="Panel/Hint"]
+offset_left = 70.0
+offset_top = -27.0
+offset_right = 110.0
+offset_bottom = -4.0
+theme_override_font_sizes/font_size = 24
+text = "Hint"
+
+[node name="Description" type="Label" parent="Panel/Hint"]
+offset_left = 73.0
+offset_top = 9.0
+offset_right = 399.0
+offset_bottom = 58.0
+text = "Getting help from when you are stuck in
+the middle of a game"
+
+[node name="Buy" type="Button" parent="Panel/Hint"]
+offset_left = 450.0
+offset_top = 10.0
+offset_right = 496.0
+offset_bottom = 41.0
+text = "Buy  "
+
+[node name="MoveDot" type="Node2D" parent="Panel"]
+position = Vector2(69, 158)
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel/MoveDot"]
+position = Vector2(3, 18)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_nghcq")
+
+[node name="Name" type="Label" parent="Panel/MoveDot"]
+offset_left = 70.0
+offset_top = -27.0
+offset_right = 110.0
+offset_bottom = -4.0
+theme_override_font_sizes/font_size = 24
+text = "Move Dot"
+
+[node name="Description" type="Label" parent="Panel/MoveDot"]
+offset_left = 73.0
+offset_top = 9.0
+offset_right = 399.0
+offset_bottom = 58.0
+text = "This power let you change the position of 
+the dot you want to move"
+
+[node name="Buy" type="Button" parent="Panel/MoveDot"]
+offset_left = 450.0
+offset_top = 10.0
+offset_right = 496.0
+offset_bottom = 41.0
+text = "Buy  "
+
+[node name="AdditionalMove" type="Node2D" parent="Panel"]
+position = Vector2(69, 266)
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel/AdditionalMove"]
+position = Vector2(3, 18)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_6xfas")
+
+[node name="Name" type="Label" parent="Panel/AdditionalMove"]
+offset_left = 70.0
+offset_top = -27.0
+offset_right = 110.0
+offset_bottom = -4.0
+theme_override_font_sizes/font_size = 24
+text = "Additional Movement"
+
+[node name="Description" type="Label" parent="Panel/AdditionalMove"]
+offset_left = 73.0
+offset_top = 9.0
+offset_right = 399.0
+offset_bottom = 58.0
+text = "Play two times with this Joker."
+
+[node name="Buy" type="Button" parent="Panel/AdditionalMove"]
+offset_left = 450.0
+offset_top = 10.0
+offset_right = 496.0
+offset_bottom = 41.0
+text = "Buy  "
+
+[node name="Snipermode" type="Node2D" parent="Panel"]
+position = Vector2(72, 355)
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel/Snipermode"]
+position = Vector2(3, 18)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_qrmjk")
+
+[node name="Name" type="Label" parent="Panel/Snipermode"]
+offset_left = 70.0
+offset_top = -27.0
+offset_right = 110.0
+offset_bottom = -4.0
+theme_override_font_sizes/font_size = 24
+text = "Sniper Mode activation"
+
+[node name="Description" type="Label" parent="Panel/Snipermode"]
+offset_left = 73.0
+offset_top = 9.0
+offset_right = 399.0
+offset_bottom = 58.0
+text = "Eliminate one dot of your choice in the board. 
+Can only be used one time each game. "
+
+[node name="Buy" type="Button" parent="Panel/Snipermode"]
+offset_left = 450.0
+offset_top = 10.0
+offset_right = 496.0
+offset_bottom = 41.0
+text = "Buy  "
+
+[connection signal="pressed" from="Button" to="." method="OnBackButtonPressed"]

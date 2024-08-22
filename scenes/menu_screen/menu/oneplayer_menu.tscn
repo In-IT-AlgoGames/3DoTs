@@ -1,0 +1,69 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbosfhdtfu8je"]
+
+[ext_resource type="Texture2D" uid="uid://b8j3xfsg4myw0" path="res://assets/images/log-out.png" id="2_f24ce"]
+
+[sub_resource type="CSharpScript" id="CSharpScript_f6n7c"]
+script/source = "using Godot;
+using System;
+
+public partial class MultiplayerMenu : Node2D
+{
+	[Signal]
+	public delegate void ChangeSceneEventHandler(string nextScene);
+	
+	
+	private void OnLocalButtonPressed()
+	{
+		EmitSignal(nameof(ChangeScene), \"game_options\");
+	}
+ 	private void OnBackButtonPressed()
+	{
+		EmitSignal(nameof(ChangeScene), \"main_menu\");		
+	}
+}
+
+
+"
+
+[node name="MultiplayerMenu" type="Node2D"]
+script = SubResource("CSharpScript_f6n7c")
+
+[node name="BackButton" type="Button" parent="."]
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 584.0
+offset_bottom = 584.0
+scale = Vector2(0.1, 0.1)
+icon = ExtResource("2_f24ce")
+
+[node name="LocalButton" type="Button" parent="."]
+offset_left = 517.0
+offset_top = 272.0
+offset_right = 706.0
+offset_bottom = 355.0
+text = "Local"
+
+[node name="LanButton" type="Button" parent="."]
+offset_left = 523.0
+offset_top = 427.0
+offset_right = 712.0
+offset_bottom = 510.0
+text = "LAN"
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 452.0
+offset_top = 137.0
+offset_right = 807.0
+offset_bottom = 225.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "Multiplayer"
+
+[connection signal="pressed" from="BackButton" to="." method="OnBackButtonPressed"]
+[connection signal="pressed" from="LocalButton" to="." method="OnLocalButtonPressed"]
+[connection signal="pressed" from="LanButton" to="." method="OnMultiplayerButtonPressed"]

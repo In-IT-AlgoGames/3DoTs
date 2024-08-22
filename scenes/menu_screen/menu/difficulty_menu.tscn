@@ -1,10 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://cwbfs75o7144"]
+[gd_scene load_steps=4 format=3 uid="uid://db5dlh8lxk75b"]
 
-[ext_resource type="Script" path="res://scripts/Controllers/MainMenu.cs" id="1_52g5c"]
-
-[sub_resource type="SystemFont" id="SystemFont_3cvdo"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hrkf2"]
+[ext_resource type="Script" path="res://scripts/Controllers/MainMenu.cs" id="1_fpmla"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_ls2wv"]
 color = Color(0.146295, 0.103001, 0.0445021, 1)
@@ -12,8 +8,8 @@ color = Color(0.146295, 0.103001, 0.0445021, 1)
 [sub_resource type="SystemFont" id="SystemFont_wg5y7"]
 font_names = PackedStringArray("Monospace")
 
-[node name="MainMenu" type="Node2D"]
-script = ExtResource("1_52g5c")
+[node name="DifficultyMenu" type="Node2D"]
+script = ExtResource("1_fpmla")
 
 [node name="menu" type="VBoxContainer" parent="."]
 anchors_preset = 7
@@ -29,35 +25,26 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 0
 
-[node name="Solo" type="Button" parent="menu"]
+[node name="Easy" type="Button" parent="menu"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_fonts/font = SubResource("SystemFont_3cvdo")
 theme_override_font_sizes/font_size = 19
-theme_override_styles/normal = SubResource("StyleBoxTexture_hrkf2")
 theme_override_styles/hover = SubResource("StyleBoxLine_ls2wv")
-text = "Solo"
+text = "Easy"
 
-[node name="Multiplayer" type="Button" parent="menu"]
+[node name="Medium" type="Button" parent="menu"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 19
 theme_override_styles/hover = SubResource("StyleBoxLine_ls2wv")
-text = "Multiplayer"
+text = "Medium"
 
-[node name="Option" type="Button" parent="menu"]
+[node name="Hard" type="Button" parent="menu"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 19
 theme_override_styles/hover = SubResource("StyleBoxLine_ls2wv")
-text = "Option"
-
-[node name="Exit" type="Button" parent="menu"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 19
-theme_override_styles/hover = SubResource("StyleBoxLine_ls2wv")
-text = "Exit"
+text = "Hard"
 
 [node name="Title" type="Label" parent="."]
 anchors_preset = 5
@@ -70,18 +57,4 @@ offset_bottom = 204.0
 grow_horizontal = 2
 theme_override_fonts/font = SubResource("SystemFont_wg5y7")
 theme_override_font_sizes/font_size = 80
-text = "3DOTS"
-
-[node name="tutoriel" type="Button" parent="."]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = 1150.0
-offset_top = 48.0
-offset_right = 1219.0
-offset_bottom = 79.0
-grow_horizontal = 0
-theme_override_font_sizes/font_size = 0
-text = "Tutoriel"
-
-[connection signal="pressed" from="menu/Multiplayer" to="." method="OnMultiplayerPressed"]
+text = "Difficulty"
