@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1b6yeion1uwu"]
+
+[ext_resource type="Texture2D" uid="uid://craalk0hgpcw" path="res://assets/images/black_normal.png" id="1_tvud3"]
+[ext_resource type="Texture2D" uid="uid://jqgmy26phnyt" path="res://assets/images/black_hover.png" id="2_emaw6"]
+[ext_resource type="Texture2D" uid="uid://df1y7jc5psdc5" path="res://assets/images/black_pressed.png" id="3_al0o8"]
+[ext_resource type="FontFile" uid="uid://b6nnraqpjrpuf" path="res://assets/font/TOONISH.ttf" id="4_bui0v"]
+
+[node name="ResumeButton" type="TextureButton"]
+offset_left = 457.0
+offset_top = 320.0
+offset_right = 577.0
+offset_bottom = 440.0
+texture_normal = ExtResource("1_tvud3")
+texture_pressed = ExtResource("2_emaw6")
+texture_hover = ExtResource("3_al0o8")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 52.0
+offset_right = 84.0
+offset_bottom = 73.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_bui0v")
+theme_override_font_sizes/font_size = 20
+text = "Exit"

@@ -33,4 +33,3 @@ public partial class PauseGame : CanvasLayer
 		EmitSignal("GoOut");
 	}
 }
-

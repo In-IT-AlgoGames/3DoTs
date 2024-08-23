@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://cu8gbij8u1vgg"]
+
+[ext_resource type="Texture2D" uid="uid://b1fni2dj5wo26" path="res://assets/images/blue_normal.png" id="1_r3ohg"]
+[ext_resource type="Texture2D" uid="uid://bhw87ho4338ax" path="res://assets/images/blue_clicked.png" id="2_xep6f"]
+[ext_resource type="Texture2D" uid="uid://02hognld3f6c" path="res://assets/images/blue_hover.png" id="3_mdhdy"]
+[ext_resource type="FontFile" uid="uid://b6nnraqpjrpuf" path="res://assets/font/TOONISH.ttf" id="4_ypfmb"]
+
+[node name="ResumeButton" type="TextureButton"]
+offset_left = 457.0
+offset_top = 320.0
+offset_right = 577.0
+offset_bottom = 440.0
+texture_normal = ExtResource("1_r3ohg")
+texture_pressed = ExtResource("2_xep6f")
+texture_hover = ExtResource("3_mdhdy")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 54.0
+offset_right = 97.0
+offset_bottom = 75.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_ypfmb")
+theme_override_font_sizes/font_size = 20
+text = "Resume
+"

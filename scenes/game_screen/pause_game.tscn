@@ -1,13 +1,36 @@
-[gd_scene load_steps=6 format=3 uid="uid://ielnk5kfgsd1"]
+[gd_scene load_steps=10 format=3 uid="uid://ielnk5kfgsd1"]
 
 [ext_resource type="Script" path="res://scripts/Controllers/PauseGame.cs" id="1_68piv"]
-[ext_resource type="Texture2D" uid="uid://dsieh2vklq4js" path="res://assets/images/play.svg" id="1_hhqvn"]
-[ext_resource type="Texture2D" uid="uid://cf8o5hxuiukg8" path="res://assets/images/rotate-right-solid.svg" id="2_0g2a2"]
-[ext_resource type="Texture2D" uid="uid://cm0hrglgdge5n" path="res://assets/images/home.svg" id="3_1c3xe"]
-[ext_resource type="Texture2D" uid="uid://b8j3xfsg4myw0" path="res://assets/images/log-out.png" id="3_ro2ac"]
+[ext_resource type="PackedScene" uid="uid://b1b6yeion1uwu" path="res://scenes/bouton/exit.tscn" id="2_abny4"]
+[ext_resource type="FontFile" uid="uid://b6nnraqpjrpuf" path="res://assets/font/TOONISH.ttf" id="3_1hn4r"]
+[ext_resource type="PackedScene" uid="uid://dwvmlts637874" path="res://scenes/bouton/restart.tscn" id="4_1ngns"]
+[ext_resource type="PackedScene" uid="uid://cu8gbij8u1vgg" path="res://scenes/bouton/resume.tscn" id="5_galm2"]
+[ext_resource type="PackedScene" uid="uid://c845hxl7bo2an" path="res://scenes/bouton/main_menu.tscn" id="5_jcj1m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vfjp3"]
+bg_color = Color(0.0807833, 0.0807833, 0.0807833, 0.576471)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ahjdr"]
+bg_color = Color(0.937255, 0.905882, 0.843137, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_70m83"]
+bg_color = Color(0.905882, 0.247059, 0.247059, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="PauseGame" type="CanvasLayer"]
 script = ExtResource("1_68piv")
+
+[node name="Panel2" type="Panel" parent="."]
+offset_right = 1300.0
+offset_bottom = 726.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_vfjp3")
 
 [node name="Panel" type="Panel" parent="."]
 anchors_preset = 8
@@ -15,89 +38,61 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -240.0
-offset_top = -140.0
-offset_right = 240.0
-offset_bottom = 140.0
+offset_left = -195.0
+offset_top = -209.0
+offset_right = 205.0
+offset_bottom = 191.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ahjdr")
 
-[node name="PauseLabel" type="Label" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -105.0
-offset_top = -70.0
-offset_right = 107.0
-offset_bottom = -25.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 32
-text = "Game Paused"
+[node name="RestartButton" parent="." instance=ExtResource("4_1ngns")]
+offset_left = 675.0
+offset_top = 220.0
+offset_right = 795.0
+offset_bottom = 340.0
 
-[node name="PlayButton" type="Button" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -165.0
-offset_top = 15.0
-offset_right = 227.0
-offset_bottom = 535.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.1, 0.1)
-icon = ExtResource("1_hhqvn")
+[node name="ExitButton" parent="." instance=ExtResource("2_abny4")]
+offset_left = 492.0
+offset_top = 396.0
+offset_right = 612.0
+offset_bottom = 516.0
 
-[node name="GoOutButton" type="Button" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -82.0
-offset_top = 13.0
-offset_right = 438.0
-offset_bottom = 533.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.1, 0.1)
-icon = ExtResource("3_ro2ac")
+[node name="ResumeButton" parent="." instance=ExtResource("5_galm2")]
+offset_left = 494.0
+offset_top = 220.0
+offset_right = 614.0
+offset_bottom = 340.0
 
-[node name="RestartButton" type="Button" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 29.0
-offset_top = 16.0
-offset_right = 549.0
-offset_bottom = 536.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.1, 0.1)
-icon = ExtResource("2_0g2a2")
+[node name="MainMenuButton2" parent="." instance=ExtResource("5_jcj1m")]
+offset_left = 675.0
+offset_top = 400.0
+offset_right = 795.0
+offset_bottom = 520.0
 
-[node name="MainMenuButton" type="Button" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 125.0
-offset_top = 15.0
-offset_right = 709.0
-offset_bottom = 535.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.1, 0.1)
-icon = ExtResource("3_1c3xe")
+[node name="TopBar" type="Node2D" parent="."]
+position = Vector2(441, 154)
 
-[connection signal="pressed" from="PlayButton" to="." method="OnPlayPressedButton"]
-[connection signal="pressed" from="GoOutButton" to="." method="OnGoOutButtonPressed"]
+[node name="Panel" type="Panel" parent="TopBar"]
+offset_left = 4.0
+offset_top = -4.0
+offset_right = 403.0
+offset_bottom = 44.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_70m83")
+
+[node name="Label" type="Label" parent="TopBar"]
+offset_left = 131.0
+offset_top = 11.0
+offset_right = 255.0
+offset_bottom = 35.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_1hn4r")
+theme_override_font_sizes/font_size = 24
+text = "PAUSE MENU"
+
 [connection signal="pressed" from="RestartButton" to="." method="OnRestartButtonPressed"]
-[connection signal="pressed" from="MainMenuButton" to="." method="OnMenuButtonPressed"]
+[connection signal="pressed" from="ExitButton" to="." method="OnGoOutButtonPressed"]
+[connection signal="pressed" from="ResumeButton" to="." method="OnPlayPressedButton"]
+[connection signal="pressed" from="MainMenuButton2" to="." method="OnMenuButtonPressed"]

@@ -162,6 +162,7 @@ text = "0"
 process_mode = 2
 
 [node name="GameOverMenu" parent="." instance=ExtResource("11_0ur1o")]
+visible = false
 
 [node name="Node" type="Node" parent="."]
 

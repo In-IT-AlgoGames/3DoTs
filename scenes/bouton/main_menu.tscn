@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://c845hxl7bo2an"]
+
+[ext_resource type="Texture2D" uid="uid://b83mjefknqda" path="res://assets/images/main_menu_normal.png" id="1_03c0j"]
+[ext_resource type="Texture2D" uid="uid://b8wi48qb66e8f" path="res://assets/images/main_menu_pressed.png" id="2_3pchr"]
+[ext_resource type="Texture2D" uid="uid://divs8oepctrn6" path="res://assets/images/main_menu_hover.png" id="3_jp62i"]
+[ext_resource type="FontFile" uid="uid://b6nnraqpjrpuf" path="res://assets/font/TOONISH.ttf" id="4_gicks"]
+
+[node name="ResumeButton" type="TextureButton"]
+offset_left = 457.0
+offset_top = 320.0
+offset_right = 577.0
+offset_bottom = 440.0
+texture_normal = ExtResource("1_03c0j")
+texture_pressed = ExtResource("2_3pchr")
+texture_hover = ExtResource("3_jp62i")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 40.0
+offset_right = 85.0
+offset_bottom = 83.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_gicks")
+theme_override_font_sizes/font_size = 20
+text = "Main
+Menu"

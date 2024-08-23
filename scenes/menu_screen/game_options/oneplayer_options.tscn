@@ -1,15 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://07lb0c6hp08u"]
+[gd_scene load_steps=15 format=3 uid="uid://07lb0c6hp08u"]
 
 [ext_resource type="Script" path="res://scripts/Controllers/OneplayerGameOptionsController.cs" id="1_nlcoc"]
 [ext_resource type="ButtonGroup" uid="uid://bq3eihtm4xuct" path="res://scenes/menu_screen/game_options/board_size_button_group.tres" id="3_8aura"]
-[ext_resource type="Texture2D" uid="uid://dcgv24t1dc780" path="res://assets/images/wood_plan.jpg" id="5_jglyy"]
+[ext_resource type="Texture2D" uid="uid://b18d3dpxmim8h" path="res://assets/images/bg-no-2.png" id="5_ve3uv"]
+[ext_resource type="FontFile" uid="uid://b6nnraqpjrpuf" path="res://assets/font/TOONISH.ttf" id="6_8v6kq"]
+[ext_resource type="FontFile" uid="uid://ca26l8iy22dei" path="res://assets/font/Nunito-Regular.ttf" id="6_xf3sv"]
 [ext_resource type="Texture2D" uid="uid://cb27udf0duobr" path="res://assets/images/left-arrow.png" id="7_sdlo5"]
 [ext_resource type="Texture2D" uid="uid://bp1m33oidrnar" path="res://assets/images/arrow-point-to-right.png" id="8_2qfl1"]
 [ext_resource type="Texture2D" uid="uid://4s1dt5cijnyu" path="res://assets/images/arrow-back.svg" id="9_187d4"]
 [ext_resource type="ButtonGroup" uid="uid://buty76nhabnd" path="res://scenes/menu_screen/game_options/difficulty_button_group.tres" id="11_t5qi1"]
 [ext_resource type="ButtonGroup" uid="uid://ii7b542rlgso" path="res://scenes/menu_screen/game_options/dot_color_button_group.tres" id="12_bg2pr"]
-[ext_resource type="Texture2D" uid="uid://dipfvjlkct4ya" path="res://assets/images/red_dot.png" id="13_72rm4"]
-[ext_resource type="Texture2D" uid="uid://djl8ga4c6jxsq" path="res://assets/images/blue_dot.png" id="14_kvfa3"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_8uiqm"]
 color = Color(0.146295, 0.103001, 0.0445021, 1)
@@ -17,6 +17,14 @@ color = Color(0.146295, 0.103001, 0.0445021, 1)
 [sub_resource type="SystemFont" id="SystemFont_sam60"]
 font_names = PackedStringArray("Monospace")
 subpixel_positioning = 0
+
+[sub_resource type="Gradient" id="Gradient_04p8b"]
+colors = PackedColorArray(0.313726, 0.94902, 0.909804, 1, 0.312906, 0.950799, 0.90818, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ntcxf"]
+gradient = SubResource("Gradient_04p8b")
+width = 200
+height = 200
 
 [node name="OneplayerGameOptionsController" type="Node2D"]
 script = ExtResource("1_nlcoc")
@@ -26,21 +34,22 @@ dotColorButtonGroup = ExtResource("12_bg2pr")
 metadata/_edit_horizontal_guides_ = [-240.0]
 
 [node name="TextureRect" type="TextureRect" parent="."]
-offset_right = 1285.0
-offset_bottom = 715.0
-texture = ExtResource("5_jglyy")
-expand_mode = 1
+offset_left = -33.0
+offset_top = -361.0
+offset_right = 1247.0
+offset_bottom = 759.0
+texture = ExtResource("5_ve3uv")
 
-[node name="difficulty" type="HBoxContainer" parent="."]
+[node name="difficulty" type="VBoxContainer" parent="."]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 160.0
-offset_top = 617.0
-offset_right = 880.0
-offset_bottom = 655.0
+offset_left = 895.0
+offset_top = 258.0
+offset_right = 1206.0
+offset_bottom = 363.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 0
@@ -49,6 +58,7 @@ theme_override_constants/separation = 0
 custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("6_xf3sv")
 theme_override_font_sizes/font_size = 19
 theme_override_styles/hover = SubResource("StyleBoxLine_8uiqm")
 toggle_mode = true
@@ -60,6 +70,7 @@ text = "Easy"
 custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("6_xf3sv")
 theme_override_font_sizes/font_size = 19
 theme_override_styles/hover = SubResource("StyleBoxLine_8uiqm")
 toggle_mode = true
@@ -70,6 +81,7 @@ text = "Medium"
 custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("6_xf3sv")
 theme_override_font_sizes/font_size = 19
 theme_override_styles/hover = SubResource("StyleBoxLine_8uiqm")
 toggle_mode = true
@@ -80,26 +92,31 @@ text = "Hard"
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 275.0
-offset_top = 487.0
-offset_right = 755.0
-offset_bottom = 597.0
+offset_left = 966.0
+offset_top = 63.0
+offset_right = 1099.0
+offset_bottom = 108.0
 grow_horizontal = 2
-theme_override_fonts/font = SubResource("SystemFont_sam60")
-theme_override_font_sizes/font_size = 80
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_8v6kq")
+theme_override_font_sizes/font_size = 32
 text = "Difficulty"
 
 [node name="Title2" type="Label" parent="."]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 276.0
-offset_top = 15.0
-offset_right = 756.0
-offset_bottom = 125.0
+offset_left = 307.0
+offset_top = 35.0
+offset_right = 568.0
+offset_bottom = 99.0
 grow_horizontal = 2
-theme_override_fonts/font = SubResource("SystemFont_sam60")
-theme_override_font_sizes/font_size = 80
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 5
+theme_override_fonts/font = ExtResource("6_8v6kq")
+theme_override_font_sizes/font_size = 64
 text = "board"
 horizontal_alignment = 1
 
@@ -116,42 +133,6 @@ theme_override_fonts/font = SubResource("SystemFont_sam60")
 theme_override_font_sizes/font_size = 24
 text = "Color"
 horizontal_alignment = 1
-
-[node name="Title4" type="Label" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 995.0
-offset_top = 169.0
-offset_right = 1161.0
-offset_bottom = 198.0
-grow_horizontal = 2
-theme_override_fonts/font = SubResource("SystemFont_sam60")
-theme_override_font_sizes/font_size = 24
-text = "Joker"
-horizontal_alignment = 1
-
-[node name="DotColor" type="Node2D" parent="."]
-position = Vector2(967, 86)
-
-[node name="RedButton" type="Button" parent="DotColor"]
-offset_left = 9.0
-offset_right = 65.0
-offset_bottom = 56.0
-toggle_mode = true
-button_pressed = true
-button_group = ExtResource("12_bg2pr")
-icon = ExtResource("13_72rm4")
-alignment = 2
-
-[node name="BlueButton" type="Button" parent="DotColor"]
-offset_left = 148.0
-offset_top = 4.0
-offset_right = 204.0
-offset_bottom = 60.0
-toggle_mode = true
-button_group = ExtResource("12_bg2pr")
-icon = ExtResource("14_kvfa3")
 
 [node name="PlayButton" type="Button" parent="."]
 offset_left = 973.0
@@ -171,23 +152,56 @@ offset_right = 167.0
 offset_bottom = 17.0
 grow_vertical = 2
 
-[node name="15x15" type="Button" parent="BoardSizeControl"]
+[node name="15x15" type="TextureButton" parent="BoardSizeControl"]
 layout_mode = 0
-offset_top = 121.0
-offset_right = 190.0
-offset_bottom = 174.0
-theme_override_font_sizes/font_size = 32
+offset_left = 54.0
+offset_top = 111.0
+offset_right = 254.0
+offset_bottom = 320.0
 toggle_mode = true
 button_pressed = true
 button_group = ExtResource("3_8aura")
-text = "15x15"
+texture_normal = SubResource("GradientTexture2D_ntcxf")
+
+[node name="15x16" type="TextureButton" parent="BoardSizeControl"]
+layout_mode = 0
+offset_left = 361.0
+offset_top = 114.0
+offset_right = 561.0
+offset_bottom = 323.0
+toggle_mode = true
+button_pressed = true
+button_group = ExtResource("3_8aura")
+texture_normal = SubResource("GradientTexture2D_ntcxf")
+
+[node name="15x17" type="TextureButton" parent="BoardSizeControl"]
+layout_mode = 0
+offset_left = 51.0
+offset_top = 380.0
+offset_right = 251.0
+offset_bottom = 589.0
+toggle_mode = true
+button_pressed = true
+button_group = ExtResource("3_8aura")
+texture_normal = SubResource("GradientTexture2D_ntcxf")
+
+[node name="15x18" type="TextureButton" parent="BoardSizeControl"]
+layout_mode = 0
+offset_left = 364.0
+offset_top = 379.0
+offset_right = 564.0
+offset_bottom = 588.0
+toggle_mode = true
+button_pressed = true
+button_group = ExtResource("3_8aura")
+texture_normal = SubResource("GradientTexture2D_ntcxf")
 
 [node name="20x20" type="Button" parent="BoardSizeControl"]
 layout_mode = 0
-offset_left = 223.0
-offset_top = 122.0
-offset_right = 409.0
-offset_bottom = 175.0
+offset_left = 391.0
+offset_top = 160.0
+offset_right = 577.0
+offset_bottom = 213.0
 theme_override_font_sizes/font_size = 32
 toggle_mode = true
 button_group = ExtResource("3_8aura")
@@ -196,10 +210,10 @@ text = "20x20
 
 [node name="25x25" type="Button" parent="BoardSizeControl"]
 layout_mode = 0
-offset_left = 425.0
-offset_top = 121.0
-offset_right = 619.0
-offset_bottom = 174.0
+offset_left = 3.0
+offset_top = 358.0
+offset_right = 197.0
+offset_bottom = 411.0
 theme_override_font_sizes/font_size = 32
 toggle_mode = true
 button_group = ExtResource("3_8aura")
@@ -208,10 +222,10 @@ text = "25x25
 
 [node name="30x30" type="Button" parent="BoardSizeControl"]
 layout_mode = 0
-offset_left = -6.0
-offset_top = 194.0
-offset_right = 184.0
-offset_bottom = 247.0
+offset_left = 388.0
+offset_top = 362.0
+offset_right = 578.0
+offset_bottom = 415.0
 theme_override_font_sizes/font_size = 32
 toggle_mode = true
 button_group = ExtResource("3_8aura")

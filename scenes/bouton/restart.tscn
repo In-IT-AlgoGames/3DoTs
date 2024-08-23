@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwvmlts637874"]
+
+[ext_resource type="Texture2D" uid="uid://duvp612b1foe1" path="res://assets/images/red_normal.png" id="1_sk2rg"]
+[ext_resource type="Texture2D" uid="uid://d4ghnmmhlfht3" path="res://assets/images/red_pressed.png" id="2_1hryq"]
+[ext_resource type="Texture2D" uid="uid://c8onay30uk0x8" path="res://assets/images/red_hover.png" id="3_ckb07"]
+[ext_resource type="FontFile" uid="uid://b6nnraqpjrpuf" path="res://assets/font/TOONISH.ttf" id="4_s42gx"]
+
+[node name="RestartButton" type="TextureButton"]
+offset_left = 457.0
+offset_top = 320.0
+offset_right = 577.0
+offset_bottom = 440.0
+texture_normal = ExtResource("1_sk2rg")
+texture_pressed = ExtResource("2_1hryq")
+texture_hover = ExtResource("3_ckb07")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 54.0
+offset_right = 100.0
+offset_bottom = 75.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_s42gx")
+theme_override_font_sizes/font_size = 20
+text = "Restart"
