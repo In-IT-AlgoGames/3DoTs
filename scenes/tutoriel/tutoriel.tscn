@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://drly42m7hlibq"]
+[gd_scene load_steps=9 format=3 uid="uid://drly42m7hlibq"]
 
 [ext_resource type="Script" path="res://scripts/Controllers/tutoriel.cs" id="1_n646b"]
 [ext_resource type="Texture2D" uid="uid://dcgv24t1dc780" path="res://assets/images/wood_plan.jpg" id="2_6ethg"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://diamhb136bry8" path="res://assets/images/Capture d’écran 2024-08-24 053310.png" id="4_1o6sq"]
 [ext_resource type="Texture2D" uid="uid://ddi1hj5cwwjeb" path="res://assets/images/pointer.png" id="4_vywbt"]
 [ext_resource type="Texture2D" uid="uid://4s1dt5cijnyu" path="res://assets/images/arrow-back.svg" id="5_6j0yb"]
-[ext_resource type="Texture2D" uid="uid://b7xauvta0401r" path="res://assets/images/board.png" id="6_mcwpk"]
 
 [sub_resource type="Theme" id="Theme_m1t6s"]
 
@@ -56,7 +55,7 @@ offset_bottom = 464.0
 size_flags_horizontal = 8
 columns = 2
 
-[node name="Step1" type="Label" parent="First2"]
+[node name="Step2" type="Label" parent="First2"]
 layout_mode = 2
 theme = SubResource("Theme_m1t6s")
 theme_override_colors/font_color = Color(0.980083, 0.982433, 0.987834, 1)
@@ -70,17 +69,15 @@ scale = Vector2(0.548908, 0.408667)
 texture = ExtResource("4_1o6sq")
 region_rect = Rect2(500, 500, 500, 500)
 
-[node name="Sprite2D2" type="Sprite2D" parent="First2"]
-
 [node name="First3" type="GridContainer" parent="."]
-offset_left = 91.0
-offset_top = 471.0
-offset_right = 507.0
-offset_bottom = 712.0
+offset_left = 78.0
+offset_top = 380.0
+offset_right = 480.0
+offset_bottom = 719.0
 size_flags_horizontal = 8
 columns = 2
 
-[node name="Step1" type="Label" parent="First3"]
+[node name="Step3" type="Label" parent="First3"]
 layout_mode = 2
 theme = SubResource("Theme_m1t6s")
 theme_override_colors/font_color = Color(0.984893, 0.979658, 0.993981, 1)
@@ -89,15 +86,10 @@ text = "3)Aligned three points to eliminate the adverse points"
 horizontal_alignment = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="First3"]
-position = Vector2(155.816, 132.15)
-scale = Vector2(0.371676, 0.277577)
-texture = ExtResource("6_mcwpk")
+position = Vector2(199, 139)
+scale = Vector2(0.548908, 0.408667)
+texture = ExtResource("4_1o6sq")
 region_rect = Rect2(500, 500, 500, 500)
-
-[node name="Sprite2D2" type="Sprite2D" parent="First3"]
-position = Vector2(142.875, 289)
-scale = Vector2(0.129395, 0.121094)
-texture = ExtResource("4_vywbt")
 
 [node name="First4" type="GridContainer" parent="."]
 offset_left = 737.0
@@ -107,7 +99,7 @@ offset_bottom = 716.0
 size_flags_horizontal = 8
 columns = 2
 
-[node name="Step1" type="Label" parent="First4"]
+[node name="Step4" type="Label" parent="First4"]
 layout_mode = 2
 theme = SubResource("Theme_m1t6s")
 theme_override_colors/font_color = Color(0.983778, 0.980149, 0.993615, 1)
