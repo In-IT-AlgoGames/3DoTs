@@ -31,6 +31,20 @@ public partial class MainMenu : Node2D
 	{
 		EmitSignal(nameof(ChangeScene), "joker_menu");
 	}
+	private void _on_tutoriel_pressed()
+{
+	EmitSignal(nameof(ChangeScene), "tutoriel");
 }
+private void _on_settings_button_pressed()
+{
+	EmitSignal(nameof(ChangeScene), "option");
+}
+}
+
+
+
+
+
+
 
 

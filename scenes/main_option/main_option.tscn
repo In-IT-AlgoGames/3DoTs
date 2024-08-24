@@ -1,0 +1,164 @@
+[gd_scene load_steps=5 format=3 uid="uid://c65nfqf1u0pih"]
+
+[ext_resource type="Texture2D" uid="uid://4s1dt5cijnyu" path="res://assets/images/arrow-back.svg" id="1_itt67"]
+[ext_resource type="Texture2D" uid="uid://dcgv24t1dc780" path="res://assets/images/wood_plan.jpg" id="2_8p34r"]
+[ext_resource type="Script" path="res://scenes/main_option/audio.cs" id="3_4p7d2"]
+
+[sub_resource type="CSharpScript" id="CSharpScript_3pxmt"]
+script/source = "using Godot;
+using System;
+
+public partial class Main_option : Node2D
+{
+	// Called when the node enters the scene tree for the first time.
+	[Signal]
+	public delegate void ChangeSceneEventHandler(string nextScene);
+	public override void _Ready()
+	{
+	}
+
+	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	public override void _Process(double delta)
+	{
+	}
+	private void _on_back_button_pressed()
+{
+   EmitSignal(nameof(ChangeScene), \"main_menu\");
+System.out.println
+}
+}
+
+
+
+
+"
+
+[node name="main_option" type="Node2D"]
+script = SubResource("CSharpScript_3pxmt")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1290.0
+offset_bottom = 720.0
+texture = ExtResource("2_8p34r")
+expand_mode = 2
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Option" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 601.0
+offset_top = 25.0
+offset_right = 724.0
+offset_bottom = 70.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "OPTION"
+
+[node name="BackButton" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 17.0
+offset_right = 301.0
+offset_bottom = 281.0
+scale = Vector2(0.2, 0.2)
+size_flags_horizontal = 0
+icon = ExtResource("1_itt67")
+flat = true
+
+[node name="Namelabel" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 1120.0
+offset_top = 29.0
+offset_right = 1243.0
+offset_bottom = 74.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 32
+text = "playerName"
+
+[node name="audio" type="Node" parent="Control"]
+script = ExtResource("3_4p7d2")
+
+[node name="option" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+offset_left = 355.0
+offset_top = 231.0
+offset_right = 836.0
+offset_bottom = 467.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/option"]
+layout_mode = 2
+
+[node name="Mute" type="Label" parent="Control/option/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Audio"
+
+[node name="HSliderVolume" type="HSlider" parent="Control/option/HBoxContainer/Mute"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 63.0
+offset_top = -2.5
+offset_right = 349.0
+offset_bottom = 13.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Volume" type="Label" parent="Control/option/HBoxContainer/Mute"]
+layout_mode = 0
+offset_left = 419.0
+offset_top = 15.0
+offset_right = 459.0
+offset_bottom = 38.0
+text = "10"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/option"]
+layout_mode = 2
+
+[node name="Mute" type="Label" parent="Control/option/HBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 32
+text = "Mute"
+
+[node name="muteBtn" type="CheckButton" parent="Control/option/HBoxContainer2"]
+layout_direction = 1
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 7
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Control/option"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="Control/option/HBoxContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Name"
+
+[node name="NameChange" type="LineEdit" parent="Control/option/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BtnChange" type="Button" parent="Control/option/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_stretch_ratio = 0.0
+text = "Change"
+
+[connection signal="pressed" from="Control/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="value_changed" from="Control/option/HBoxContainer/Mute/HSliderVolume" to="." method="_on_h_slider_volume_value_changed"]
