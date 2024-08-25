@@ -37,7 +37,6 @@ public partial class MultiplayerGameOptionsController : Node2D
 		player2Edit.Text = "Player 2";
 		player2Edit.PlaceholderText = "Player 2";
 		
-		
 		var increaseButton = timerNode.GetNode<TextureButton>("IncreaseButton");
 		var decreaseButton = timerNode.GetNode<TextureButton>("DecreaseButton");
 

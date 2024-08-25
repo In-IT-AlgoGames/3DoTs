@@ -47,6 +47,22 @@ public class Diagonal : Object
 			pts[2] = matrix[row, col];
 		}
 
+		// Additional check for 2 out of 3 alignment
+		if (pts[0] == null || pts[1] == null || pts[2] == null)
+		{
+			pts[1] = p;
+
+			if (row > 0 && col > 0 && matrix[row - 1, col - 1].GetValue() == target)
+			{
+				pts[0] = matrix[row - 1, col - 1];
+			}
+
+			if (row < rowLength - 1 && col < colLength - 1 && matrix[row + 1, col + 1].GetValue() == target)
+			{
+				pts[2] = matrix[row + 1, col + 1];
+			}
+		}
+
 		if (pts[0] != null && pts[1] != null && pts[2] != null)
 		{
 			KillEnemies(matrix, pts, score, dead);
@@ -57,6 +73,7 @@ public class Diagonal : Object
 	{
 		int ally = pts[0].GetValue();
 
+		// If alignment is on the edge of the matrix
 		if (pts[0].GetX() == 0 || pts[0].GetY() == 0)
 		{
 			FindAndKillEnemies(matrix, pts[2].GetX(), pts[2].GetY(), matrix.GetLength(0), matrix.GetLength(1), 1, ally, score, dead);
@@ -65,12 +82,19 @@ public class Diagonal : Object
 		{
 			FindAndKillEnemies(matrix, pts[0].GetX(), pts[0].GetY(), 0, 0, -1, ally, score, dead);
 		}
+		else
+		{
+			// Kill downward-right and upward-left enemies
+			FindAndKillEnemies(matrix, pts[2].GetX(), pts[2].GetY(), matrix.GetLength(0), matrix.GetLength(1), 1, ally, score, dead);
+			FindAndKillEnemies(matrix, pts[0].GetX(), pts[0].GetY(), 0, 0, -1, ally, score, dead);
+		}
 	}
 
 	private void FindAndKillEnemies(Point[,] matrix, int startRow, int startCol, int endRow, int endCol, int step, int ally, Score score, List<Point> dead)
 	{
 		List<Point> enemies = new List<Point>();
 
+		// Find continuous ally points
 		for (int i = startRow + step, j = startCol + step;
 			 (step > 0 ? i < endRow && j < endCol : i >= endRow && j >= endCol);
 			 i += step, j += step)
@@ -86,6 +110,7 @@ public class Diagonal : Object
 			}
 		}
 
+		// Collect enemy points
 		for (int i = startRow + step, j = startCol + step;
 			 (step > 0 ? i < endRow && j < endCol : i >= endRow && j >= endCol);
 			 i += step, j += step)
@@ -100,11 +125,12 @@ public class Diagonal : Object
 			}
 		}
 
+		// Kill enemies and update the score
 		foreach (Point enemy in enemies)
 		{
-			enemy.SetValue(enemy.GetValue() * -1);
-			score.SetScore(score.GetScore() + 1);
-			dead.Add(enemy);
+			enemy.SetValue(enemy.GetValue() * -1);  // Mark enemy as killed
+			score.SetScore(score.GetScore() + 1);    // Increase player score
+			dead.Add(enemy);                         // Add to dead enemies list
 		}
 	}
 }

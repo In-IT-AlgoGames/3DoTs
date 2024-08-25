@@ -43,10 +43,16 @@ public partial class MultiplayerGameScreen : Node2D
 		sniperP1 = GetNode<Label>("JokerPlayer1/SniperMode/Number");
 		sniperP2 = GetNode<Label>("JokerPlayer2/SniperMode/Number");
 		
-		
-		//hintP1 , moveDotP1, addMoveP1, sniperP1;
-		//hintP2, moveDotP2, addMoveP2, sniperP2;
-		
+		hintP1.Text = gameOptions.hint.ToString();
+		moveDotP1.Text = gameOptions.moveDot.ToString();
+		addMoveP1.Text = gameOptions.additionalTurn.ToString();
+		sniperP1.Text = gameOptions.sniperNumber.ToString();
+
+		hintP2.Text = gameOptions.hint.ToString();
+		moveDotP2.Text = gameOptions.moveDot.ToString();
+		addMoveP2.Text = gameOptions.additionalTurn.ToString();
+		sniperP2.Text = gameOptions.sniperNumber.ToString();
+
 		
 		
 		player1 = GetNode<Label>("Player1Name");
