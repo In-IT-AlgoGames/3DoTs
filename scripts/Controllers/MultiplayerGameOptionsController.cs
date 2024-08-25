@@ -21,7 +21,7 @@ public partial class MultiplayerGameOptionsController : Node2D
 	[Signal]
 	public delegate void ChangeSceneEventHandler(string currentScene);
 	
-	GameNode test;
+	
 	public override void _Ready()
 	{
 		

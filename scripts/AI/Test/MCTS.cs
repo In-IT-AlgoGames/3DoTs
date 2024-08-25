@@ -84,7 +84,7 @@ public class MCTS : Object
 
 	private GameNode Select(GameNode node, double EXPLORATION_PARAM)
 	{
-		GD.Print("test");
+		
 		while (node.children.Any())
 		{
 			node = node.GetBestChild(EXPLORATION_PARAM);

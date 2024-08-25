@@ -1,7 +1,7 @@
 using System;
 using Godot;
 using System.Collections.Generic;
-
+using System.Linq; // Ensure you have this using directive
 
 public class GameNode : Object
 {
@@ -24,45 +24,15 @@ public class GameNode : Object
 		children = new List<GameNode>();
 	}
 
-
-
-	// this code failed compilations so I replaced it with the one below
-	//public GameNode GetBestChild(double EXPLORATION_PARAM)
-	//{
-		//if (children.Count == 0)
-		//{
-			//throw new InvalidOperationException("No children available");
-		//}
-//
-		//return children.MaxBy(c =>
-			//c.value / c.visits + EXPLORATION_PARAM * Math.Sqrt(Math.Log(visits) / c.visits)
-		//);
-	//}
-	
-	
-public GameNode GetBestChild(double EXPLORATION_PARAM)
-{
-	if (children.Count == 0)
+	public GameNode GetBestChild(double EXPLORATION_PARAM)
 	{
-		throw new InvalidOperationException("No children available");
-	}
-
-	GameNode bestChild = null;
-	double bestValue = double.MinValue;
-
-	foreach (var child in children)
-	{
-		double uctValue = child.value / child.visits +
-						  EXPLORATION_PARAM * Math.Sqrt(Math.Log(visits) / child.visits);
-
-		if (uctValue > bestValue)
+		if (children.Count == 0)
 		{
-			bestValue = uctValue;
-			bestChild = child;
+			throw new InvalidOperationException("No children available");
 		}
+
+		return children
+			.OrderByDescending(c => c.value / c.visits + EXPLORATION_PARAM * Math.Sqrt(Math.Log(visits) / c.visits))
+			.First();
 	}
-
-	return bestChild;
-}
-
 }

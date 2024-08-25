@@ -7,7 +7,7 @@ public partial class Computer : Node
 	int x, y;
 	
 	public Computer(string level){
-		GD.Print(level);
+		
 		gameLevel = level;
 		x = 0;
 		y = 0;
