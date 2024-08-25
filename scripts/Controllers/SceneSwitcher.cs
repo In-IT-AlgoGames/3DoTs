@@ -42,6 +42,12 @@ public partial class SceneSwitcher : Node
 			case "joker_menu":
 				scene_path = "res://scenes/menu_screen/menu/joker_menu.tscn";
 				break;
+			case "option":
+				scene_path = "res://scenes/option_screen/main_option.tscn";
+				break;
+			case "tutorial":
+				scene_path = "res://scenes/tutorial/tutorial.tscn";
+				break;
 			default:
 				GD.Print("scene inconnu");
 				break;

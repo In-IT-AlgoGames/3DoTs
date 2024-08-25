@@ -1,5 +1,0 @@
-[gd_scene format=3 uid="uid://cfa1af5lp3gs"]
-
-[node name="Joker" type="Panel"]
-offset_right = 30.0
-offset_bottom = 40.0

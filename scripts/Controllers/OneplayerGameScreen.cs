@@ -41,13 +41,13 @@ public partial class OneplayerGameScreen : Node2D
 		gameOverMenu.Hide();
 		
 		// ressource displaying
-		coinsLabel = GetNode<Label>("Ressources/Coins/CoinValue");
-		diamondsLabel = GetNode<Label>("Ressources/Diamonds/DiamonValue");
+		coinsLabel = GetNode<Label>("Coins/CoinValue");
+		diamondsLabel = GetNode<Label>("Diamonds/DiamonValue");
 		coinsLabel.Text = LocalPlayer.coins.ToString();
 		diamondsLabel.Text = LocalPlayer.diamonds.ToString();
 		// score displaying 
-		playerLabel = GetNode("Player").GetNode<Label>("PlayerName");
-		computerLabel = GetNode("Computer").GetNode<Label>("Computer");
+		playerLabel =GetNode<Label>("PlayerName");
+		computerLabel = GetNode<Label>("ComputerName");
 		playerScoreLabel = GetNode<Label>("PlayerScore");
 		computerScoreLabel = GetNode<Label>("ComputerScore");
 		gameBoardSection.SetScoreLabel(playerScoreLabel, computerScoreLabel);

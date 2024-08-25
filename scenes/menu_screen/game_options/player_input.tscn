@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://d35p0fn50sp31"]
+[gd_scene load_steps=4 format=3 uid="uid://coieuckfh1w2a"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uysh4"]
 bg_color = Color(0.956863, 0.956863, 0.956863, 1)
@@ -12,7 +12,7 @@ bg_color = Color(0.7602, 0.560443, 0.201832, 1)
 
 [node name="PlayerName" type="LineEdit" parent="."]
 offset_right = 165.0
-offset_bottom = 36.0
+offset_bottom = 38.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_placeholder_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24

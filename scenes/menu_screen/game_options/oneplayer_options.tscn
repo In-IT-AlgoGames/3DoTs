@@ -1,30 +1,30 @@
-[gd_scene load_steps=15 format=3 uid="uid://07lb0c6hp08u"]
+[gd_scene load_steps=26 format=3 uid="uid://07lb0c6hp08u"]
 
 [ext_resource type="Script" path="res://scripts/Controllers/OneplayerGameOptionsController.cs" id="1_nlcoc"]
 [ext_resource type="ButtonGroup" uid="uid://bq3eihtm4xuct" path="res://scenes/menu_screen/game_options/board_size_button_group.tres" id="3_8aura"]
-[ext_resource type="Texture2D" uid="uid://b18d3dpxmim8h" path="res://assets/images/bg-no-2.png" id="5_ve3uv"]
+[ext_resource type="Texture2D" uid="uid://c0httpj32su36" path="res://assets/images/background/bg-7-wood.png" id="5_yvqv6"]
 [ext_resource type="FontFile" uid="uid://b6nnraqpjrpuf" path="res://assets/font/TOONISH.ttf" id="6_8v6kq"]
-[ext_resource type="FontFile" uid="uid://ca26l8iy22dei" path="res://assets/font/Nunito-Regular.ttf" id="6_xf3sv"]
-[ext_resource type="Texture2D" uid="uid://cb27udf0duobr" path="res://assets/images/left-arrow.png" id="7_sdlo5"]
-[ext_resource type="Texture2D" uid="uid://bp1m33oidrnar" path="res://assets/images/arrow-point-to-right.png" id="8_2qfl1"]
-[ext_resource type="Texture2D" uid="uid://4s1dt5cijnyu" path="res://assets/images/arrow-back.svg" id="9_187d4"]
+[ext_resource type="Texture2D" uid="uid://clxc7epghqly8" path="res://assets/images/difficulty_choice/hover.png" id="7_8g5vk"]
+[ext_resource type="Texture2D" uid="uid://cxtlc8jcksuyt" path="res://assets/images/board_size_texture/15x15.png" id="8_5g244"]
+[ext_resource type="Texture2D" uid="uid://drr15at887br4" path="res://assets/images/difficulty_choice/pressed.png" id="8_nnguw"]
+[ext_resource type="Texture2D" uid="uid://k41vd0jgyxh6" path="res://assets/images/board_size_texture/15x15-pressed.png" id="9_mjue3"]
+[ext_resource type="Texture2D" uid="uid://ffcjgior0ajt" path="res://assets/images/board_size_texture/20x20.png" id="10_fjbci"]
+[ext_resource type="PackedScene" uid="uid://bkcr5bdykoxx5" path="res://scenes/bouton/primary_btn.tscn" id="10_sjxuy"]
+[ext_resource type="Texture2D" uid="uid://ccy7h7sqynbse" path="res://assets/images/board_size_texture/20x20-pressed.png" id="11_j6oon"]
 [ext_resource type="ButtonGroup" uid="uid://buty76nhabnd" path="res://scenes/menu_screen/game_options/difficulty_button_group.tres" id="11_t5qi1"]
 [ext_resource type="ButtonGroup" uid="uid://ii7b542rlgso" path="res://scenes/menu_screen/game_options/dot_color_button_group.tres" id="12_bg2pr"]
-
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_8uiqm"]
-color = Color(0.146295, 0.103001, 0.0445021, 1)
-
-[sub_resource type="SystemFont" id="SystemFont_sam60"]
-font_names = PackedStringArray("Monospace")
-subpixel_positioning = 0
-
-[sub_resource type="Gradient" id="Gradient_04p8b"]
-colors = PackedColorArray(0.313726, 0.94902, 0.909804, 1, 0.312906, 0.950799, 0.90818, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_ntcxf"]
-gradient = SubResource("Gradient_04p8b")
-width = 200
-height = 200
+[ext_resource type="Texture2D" uid="uid://da6wtf77x6xlo" path="res://assets/images/board_size_texture/25x25.png" id="12_hdork"]
+[ext_resource type="Texture2D" uid="uid://wsoicmp2bfyh" path="res://assets/images/board_size_texture/25x25-pressed.png" id="13_ck5gu"]
+[ext_resource type="Texture2D" uid="uid://dpagtq61fwwfu" path="res://assets/images/board_size_texture/30x30.png" id="14_j2lie"]
+[ext_resource type="Texture2D" uid="uid://dbo3mid5jy2ov" path="res://assets/images/board_size_texture/30x30-pressed.png" id="15_colhl"]
+[ext_resource type="Texture2D" uid="uid://b4uc75qxdvmda" path="res://assets/images/arrow-game-time/Group-1.png" id="16_qy8ax"]
+[ext_resource type="Texture2D" uid="uid://c8ur1ljcn05if" path="res://assets/images/arrow-game-time/left-pressed.png" id="17_mdnvo"]
+[ext_resource type="FontFile" uid="uid://mrdy76e1pqs7" path="res://assets/font/Nunito-Bold.ttf" id="17_nlyya"]
+[ext_resource type="Texture2D" uid="uid://bqhr8t1su4a0t" path="res://assets/images/game_time_bg.png" id="18_dgutu"]
+[ext_resource type="Texture2D" uid="uid://ddq4gq8130g50" path="res://assets/images/arrow-game-time/Group.png" id="18_jlhtt"]
+[ext_resource type="Texture2D" uid="uid://djrnsqs81nnp2" path="res://assets/images/arrow-game-time/right-pressed.png" id="20_ej8d4"]
+[ext_resource type="Texture2D" uid="uid://iqmtnbn3xile" path="res://assets/images/back_btn/normal.png" id="23_8hw8a"]
+[ext_resource type="Texture2D" uid="uid://cw74jp7xu6sl7" path="res://assets/images/back_btn/pressed.png" id="24_71nuc"]
 
 [node name="OneplayerGameOptionsController" type="Node2D"]
 script = ExtResource("1_nlcoc")
@@ -35,10 +35,28 @@ metadata/_edit_horizontal_guides_ = [-240.0]
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = -33.0
-offset_top = -361.0
-offset_right = 1247.0
-offset_bottom = 759.0
-texture = ExtResource("5_ve3uv")
+offset_top = 1.0
+offset_right = 1299.0
+offset_bottom = 760.0
+texture = ExtResource("5_yvqv6")
+
+[node name="DifficultyTitle" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 987.0
+offset_top = 82.0
+offset_right = 1137.0
+offset_bottom = 119.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.00392157, 0.00392157, 0.00392157, 1)
+theme_override_colors/font_outline_color = Color(0.941176, 0.913725, 0.843137, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("6_8v6kq")
+theme_override_font_sizes/font_size = 32
+text = "Difficulty"
 
 [node name="difficulty" type="VBoxContainer" parent="."]
 anchors_preset = 7
@@ -46,238 +64,249 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 895.0
-offset_top = 258.0
-offset_right = 1206.0
-offset_bottom = 363.0
+offset_left = 921.0
+offset_top = 115.0
+offset_right = 1233.0
+offset_bottom = 340.0
 grow_horizontal = 2
 grow_vertical = 0
+scale = Vector2(0.9, 0.9)
 theme_override_constants/separation = 0
 
-[node name="Easy" type="Button" parent="difficulty"]
+[node name="Easy" type="TextureButton" parent="difficulty"]
 custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_fonts/font = ExtResource("6_xf3sv")
-theme_override_font_sizes/font_size = 19
-theme_override_styles/hover = SubResource("StyleBoxLine_8uiqm")
 toggle_mode = true
 button_pressed = true
 button_group = ExtResource("11_t5qi1")
+texture_normal = ExtResource("7_8g5vk")
+texture_pressed = ExtResource("8_nnguw")
+texture_hover = ExtResource("7_8g5vk")
+
+[node name="Label" type="Label" parent="difficulty/Easy"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -1
+theme_override_constants/shadow_offset_y = 1
 text = "Easy"
 
-[node name="Medium" type="Button" parent="difficulty"]
+[node name="Medium" type="TextureButton" parent="difficulty"]
 custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_fonts/font = ExtResource("6_xf3sv")
-theme_override_font_sizes/font_size = 19
-theme_override_styles/hover = SubResource("StyleBoxLine_8uiqm")
 toggle_mode = true
 button_group = ExtResource("11_t5qi1")
+texture_normal = ExtResource("7_8g5vk")
+texture_pressed = ExtResource("8_nnguw")
+texture_hover = ExtResource("7_8g5vk")
+
+[node name="Label" type="Label" parent="difficulty/Medium"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -1
+theme_override_constants/shadow_offset_y = 1
 text = "Medium"
 
-[node name="Hard" type="Button" parent="difficulty"]
+[node name="Hard" type="TextureButton" parent="difficulty"]
 custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_fonts/font = ExtResource("6_xf3sv")
-theme_override_font_sizes/font_size = 19
-theme_override_styles/hover = SubResource("StyleBoxLine_8uiqm")
 toggle_mode = true
 button_group = ExtResource("11_t5qi1")
+texture_normal = ExtResource("7_8g5vk")
+texture_pressed = ExtResource("8_nnguw")
+texture_hover = ExtResource("7_8g5vk")
+
+[node name="Label" type="Label" parent="difficulty/Hard"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -1
+theme_override_constants/shadow_offset_y = 1
 text = "Hard"
 
-[node name="Title" type="Label" parent="."]
+[node name="SelectBoardTitle" type="Label" parent="."]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 966.0
-offset_top = 63.0
-offset_right = 1099.0
-offset_bottom = 108.0
+offset_left = 341.0
+offset_top = 36.0
+offset_right = 602.0
+offset_bottom = 100.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("6_8v6kq")
-theme_override_font_sizes/font_size = 32
-text = "Difficulty"
-
-[node name="Title2" type="Label" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 307.0
-offset_top = 35.0
-offset_right = 568.0
-offset_bottom = 99.0
-grow_horizontal = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
-theme_override_constants/shadow_offset_x = 4
-theme_override_constants/shadow_offset_y = 5
+theme_override_colors/font_outline_color = Color(0.941176, 0.913725, 0.843137, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 15
 theme_override_fonts/font = ExtResource("6_8v6kq")
 theme_override_font_sizes/font_size = 64
 text = "board"
 horizontal_alignment = 1
-
-[node name="Title3" type="Label" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 989.0
-offset_top = 53.0
-offset_right = 1155.0
-offset_bottom = 82.0
-grow_horizontal = 2
-theme_override_fonts/font = SubResource("SystemFont_sam60")
-theme_override_font_sizes/font_size = 24
-text = "Color"
-horizontal_alignment = 1
-
-[node name="PlayButton" type="Button" parent="."]
-offset_left = 973.0
-offset_top = 579.0
-offset_right = 1213.0
-offset_bottom = 659.0
-theme_override_font_sizes/font_size = 24
-text = "Play"
 
 [node name="BoardSizeControl" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 9
 anchor_bottom = 1.0
 offset_left = 167.0
-offset_top = 17.0
+offset_top = 45.0
 offset_right = 167.0
-offset_bottom = 17.0
+offset_bottom = 45.0
 grow_vertical = 2
 
 [node name="15x15" type="TextureButton" parent="BoardSizeControl"]
 layout_mode = 0
-offset_left = 54.0
-offset_top = 111.0
-offset_right = 254.0
-offset_bottom = 320.0
+offset_left = 70.0
+offset_top = 73.0
+offset_right = 292.0
+offset_bottom = 295.0
 toggle_mode = true
 button_pressed = true
 button_group = ExtResource("3_8aura")
-texture_normal = SubResource("GradientTexture2D_ntcxf")
+texture_normal = ExtResource("8_5g244")
+texture_pressed = ExtResource("9_mjue3")
+texture_hover = ExtResource("9_mjue3")
 
-[node name="15x16" type="TextureButton" parent="BoardSizeControl"]
+[node name="20x20" type="TextureButton" parent="BoardSizeControl"]
 layout_mode = 0
-offset_left = 361.0
-offset_top = 114.0
-offset_right = 561.0
-offset_bottom = 323.0
-toggle_mode = true
-button_pressed = true
-button_group = ExtResource("3_8aura")
-texture_normal = SubResource("GradientTexture2D_ntcxf")
-
-[node name="15x17" type="TextureButton" parent="BoardSizeControl"]
-layout_mode = 0
-offset_left = 51.0
-offset_top = 380.0
-offset_right = 251.0
-offset_bottom = 589.0
-toggle_mode = true
-button_pressed = true
-button_group = ExtResource("3_8aura")
-texture_normal = SubResource("GradientTexture2D_ntcxf")
-
-[node name="15x18" type="TextureButton" parent="BoardSizeControl"]
-layout_mode = 0
-offset_left = 364.0
-offset_top = 379.0
-offset_right = 564.0
-offset_bottom = 588.0
-toggle_mode = true
-button_pressed = true
-button_group = ExtResource("3_8aura")
-texture_normal = SubResource("GradientTexture2D_ntcxf")
-
-[node name="20x20" type="Button" parent="BoardSizeControl"]
-layout_mode = 0
-offset_left = 391.0
-offset_top = 160.0
-offset_right = 577.0
-offset_bottom = 213.0
-theme_override_font_sizes/font_size = 32
+offset_left = 330.0
+offset_top = 73.0
+offset_right = 552.0
+offset_bottom = 295.0
 toggle_mode = true
 button_group = ExtResource("3_8aura")
-text = "20x20
-"
+texture_normal = ExtResource("10_fjbci")
+texture_pressed = ExtResource("11_j6oon")
+texture_hover = ExtResource("11_j6oon")
 
-[node name="25x25" type="Button" parent="BoardSizeControl"]
+[node name="25x25" type="TextureButton" parent="BoardSizeControl"]
 layout_mode = 0
-offset_left = 3.0
-offset_top = 358.0
-offset_right = 197.0
-offset_bottom = 411.0
-theme_override_font_sizes/font_size = 32
+offset_left = 65.0
+offset_top = 326.0
+offset_right = 287.0
+offset_bottom = 548.0
 toggle_mode = true
 button_group = ExtResource("3_8aura")
-text = "25x25
-"
+texture_normal = ExtResource("12_hdork")
+texture_pressed = ExtResource("13_ck5gu")
+texture_hover = ExtResource("13_ck5gu")
 
-[node name="30x30" type="Button" parent="BoardSizeControl"]
+[node name="30x30" type="TextureButton" parent="BoardSizeControl"]
 layout_mode = 0
-offset_left = 388.0
-offset_top = 362.0
-offset_right = 578.0
-offset_bottom = 415.0
-theme_override_font_sizes/font_size = 32
+offset_left = 329.0
+offset_top = 321.0
+offset_right = 551.0
+offset_bottom = 543.0
 toggle_mode = true
 button_group = ExtResource("3_8aura")
-text = "30x30
-"
+texture_normal = ExtResource("14_j2lie")
+texture_pressed = ExtResource("15_colhl")
+texture_hover = ExtResource("15_colhl")
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+offset_left = 914.0
+offset_top = 394.0
+offset_right = 1219.0
+offset_bottom = 574.0
+texture = ExtResource("18_dgutu")
 
 [node name="GameTime" type="Node2D" parent="."]
-position = Vector2(1000, 460)
+position = Vector2(977, 439)
 
 [node name="Label" type="Label" parent="GameTime"]
-offset_left = 55.0
-offset_right = 131.0
-offset_bottom = 45.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+offset_left = 57.0
+offset_top = -25.0
+offset_right = 133.0
+offset_bottom = 20.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.941176, 0.913725, 0.843137, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("6_8v6kq")
 theme_override_font_sizes/font_size = 32
 text = "TIME"
 
 [node name="Timer" type="Node2D" parent="GameTime"]
-position = Vector2(0, 50)
+position = Vector2(0, 45)
 
-[node name="DecreaseButton" type="Button" parent="GameTime/Timer"]
-offset_left = -23.0
-offset_top = 2.0
-offset_right = 49.0
-offset_bottom = 74.0
+[node name="DecreaseButton" type="TextureButton" parent="GameTime/Timer"]
+offset_left = -48.0
+offset_top = -3.0
+offset_right = 73.0
+offset_bottom = 78.0
 scale = Vector2(0.7, 0.7)
-icon = ExtResource("7_sdlo5")
+texture_normal = ExtResource("16_qy8ax")
+texture_pressed = ExtResource("17_mdnvo")
 
 [node name="TimerLabel" type="Label" parent="GameTime/Timer"]
-offset_left = 52.0
-offset_top = 4.0
+offset_left = 49.0
+offset_top = -5.0
 offset_right = 133.0
-offset_bottom = 49.0
+offset_bottom = 40.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("17_nlyya")
 theme_override_font_sizes/font_size = 32
 text = "05:30"
 
-[node name="IncreaseButton" type="Button" parent="GameTime/Timer"]
-offset_left = 160.0
-offset_top = 3.0
-offset_right = 232.0
-offset_bottom = 75.0
+[node name="IncreaseButton" type="TextureButton" parent="GameTime/Timer"]
+offset_left = 143.0
+offset_top = -12.0
+offset_right = 263.0
+offset_bottom = 68.0
 scale = Vector2(0.7, 0.7)
-icon = ExtResource("8_2qfl1")
+texture_normal = ExtResource("18_jlhtt")
+texture_pressed = ExtResource("20_ej8d4")
 
-[node name="BackButton" type="Button" parent="."]
-offset_left = 57.0
-offset_top = 27.0
-offset_right = 321.0
-offset_bottom = 291.0
-scale = Vector2(0.2, 0.2)
-icon = ExtResource("9_187d4")
-flat = true
+[node name="PlayButton" parent="." instance=ExtResource("10_sjxuy")]
+offset_left = 926.0
+offset_top = 589.0
+offset_right = 1276.0
+offset_bottom = 699.0
+scale = Vector2(0.8, 0.8)
+
+[node name="BackButton" type="TextureButton" parent="."]
+offset_left = 108.0
+offset_top = 43.0
+offset_right = 158.0
+offset_bottom = 89.0
+texture_normal = ExtResource("23_8hw8a")
+texture_pressed = ExtResource("24_71nuc")
 
 [connection signal="pressed" from="PlayButton" to="." method="_OnPlayButtonPressed"]
 [connection signal="pressed" from="BackButton" to="." method="OnBackButtonPressed"]

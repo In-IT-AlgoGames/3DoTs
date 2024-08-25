@@ -23,26 +23,27 @@ public partial class OneplayerGameOptionsController : Node2D
 	public delegate void ChangeSceneEventHandler(string currentScene);
 	
 	public override void _Ready()
-	{
+	{	
+		GetNode<Label>("PlayButton/Label").Text = "Play";
 		Node timerNode = GetNode<Node>("GameTime").GetNode<Node>("Timer");
 		timerLabel = timerNode.GetNode<Label>("TimerLabel");
 		timerLabel.Text = ConvertSecondsToMinuteSecond(gameTime);
 		
 		
-		var increaseButton = timerNode.GetNode<Button>("IncreaseButton");
-		var decreaseButton = timerNode.GetNode<Button>("DecreaseButton");
+		var increaseButton = timerNode.GetNode<TextureButton>("IncreaseButton");
+		var decreaseButton = timerNode.GetNode<TextureButton>("DecreaseButton");
 
 		// Connect the pressed signals to the parent's methods using Callables
 		increaseButton.Connect("pressed", new Callable(this, nameof(OnIncreaseButtonPressed)));
 		decreaseButton.Connect("pressed", new Callable(this, nameof(OnDecreaseButtonPressed)));
 	
 		  // Connect each button in the ButtonGroup to the method
-		foreach (Button button in boardSizeButtonGroup.GetButtons())
+		foreach (TextureButton button in boardSizeButtonGroup.GetButtons())
 		{
 			button.Connect("pressed", new Callable(this, nameof(OnBoardSizeButtonPressed)));
 		}
 		// Connect each difficulty button to the appropriate method
-		foreach (Button button in difficultyButtonGroup.GetButtons()){
+		foreach (TextureButton button in difficultyButtonGroup.GetButtons()){
 			button.Connect("pressed", new Callable(this, nameof(OnDifficultyButtonPressed)));
 		}
 	
@@ -93,9 +94,9 @@ public partial class OneplayerGameOptionsController : Node2D
 	private void OnBoardSizeButtonPressed()
 	{
 		// Get the button that was pressed
-		Button pressedButton = (Button)boardSizeButtonGroup.GetPressedButton();
+		TextureButton pressedButton = (TextureButton)boardSizeButtonGroup.GetPressedButton();
 		// Update boardSize based on the text of the pressed button
-		switch (pressedButton.Text.Trim())
+		switch (((String) pressedButton.Name).Trim())
 		{
 			case "15x15":
 				boardSize = 15;
@@ -117,8 +118,8 @@ public partial class OneplayerGameOptionsController : Node2D
 	}
 	
 	private void OnDifficultyButtonPressed(){
-		Button pressedButton = (Button) difficultyButtonGroup.GetPressedButton();
-		gameLevel = pressedButton.Text.ToLower();
+		TextureButton pressedButton = (TextureButton) difficultyButtonGroup.GetPressedButton();
+		gameLevel = ((String) pressedButton.Name).Trim();
 	}
 	private string ConvertSecondsToMinuteSecond(int totalSeconds)
 	{
@@ -128,9 +129,6 @@ public partial class OneplayerGameOptionsController : Node2D
 	}
 	
 }
-
-
-
 
 
 

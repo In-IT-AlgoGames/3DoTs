@@ -1,22 +1,29 @@
-[gd_scene load_steps=18 format=3 uid="uid://mruyrbyp7ome"]
+[gd_scene load_steps=23 format=3 uid="uid://mruyrbyp7ome"]
 
 [ext_resource type="Script" path="res://scripts/Controllers/OneplayerGameScreen.cs" id="1_atnf4"]
 [ext_resource type="PackedScene" uid="uid://cdcq7uxq8j3vn" path="res://scenes/game_screen/game_board_multiplayer.tscn" id="2_qljml"]
-[ext_resource type="Texture2D" uid="uid://dcgv24t1dc780" path="res://assets/images/wood_plan.jpg" id="2_qorhl"]
+[ext_resource type="Texture2D" uid="uid://c0httpj32su36" path="res://assets/images/background/bg-7-wood.png" id="2_tofnq"]
 [ext_resource type="PackedScene" uid="uid://b5soym5uxxm55" path="res://scenes/game_screen/dead_icon.tscn" id="3_aktai"]
 [ext_resource type="Script" path="res://scripts/Controllers/OneplayerGameBoard.cs" id="3_uthby"]
 [ext_resource type="Theme" uid="uid://byy1nm0wha7ja" path="res://assets/button_theme.tres" id="4_mdd5m"]
-[ext_resource type="Texture2D" uid="uid://bpepsg31nhklw" path="res://assets/images/pause.png" id="5_837y2"]
-[ext_resource type="Texture2D" uid="uid://bpscj4tnbiwdj" path="res://assets/images/stone_yellow.png" id="6_x16q7"]
-[ext_resource type="Texture2D" uid="uid://xd7yyjxyr77x" path="res://assets/images/stone_blue.png" id="7_ac4mj"]
-[ext_resource type="Texture2D" uid="uid://dipfvjlkct4ya" path="res://assets/images/red_dot.png" id="8_me4hm"]
-[ext_resource type="Texture2D" uid="uid://djl8ga4c6jxsq" path="res://assets/images/blue_dot.png" id="9_fgacd"]
+[ext_resource type="Texture2D" uid="uid://dy3sgb44yihwg" path="res://assets/images/game_screen_element/top_pause.png" id="7_636ee"]
+[ext_resource type="Texture2D" uid="uid://dumoi4imqnomw" path="res://assets/images/game_screen_element/top_resources.png" id="8_6oann"]
+[ext_resource type="Texture2D" uid="uid://dpjfgjwagw3wm" path="res://assets/images/game_screen_element/top_chrono.png" id="9_r3t0q"]
 [ext_resource type="PackedScene" uid="uid://ielnk5kfgsd1" path="res://scenes/game_screen/pause_game.tscn" id="10_fnwww"]
-[ext_resource type="PackedScene" uid="uid://s1la5f78r66q" path="res://scenes/game_screen/game_over_menu.tscn" id="11_0ur1o"]
-[ext_resource type="Texture2D" uid="uid://bsy3a8npaq01l" path="res://assets/images/idea.png" id="12_kjjkq"]
-[ext_resource type="Texture2D" uid="uid://cb8mcatnlt3ye" path="res://assets/images/move.png" id="13_n2ghj"]
-[ext_resource type="Texture2D" uid="uid://co4fhpxacbvjk" path="res://assets/images/plus.png" id="14_ruchx"]
-[ext_resource type="Texture2D" uid="uid://dh1o2h5s6w26f" path="res://assets/images/sniper.png" id="15_2ryy3"]
+[ext_resource type="Texture2D" uid="uid://dekdd8cx3hqwk" path="res://assets/images/game_screen_element/top_blue_score.png" id="10_schwj"]
+[ext_resource type="PackedScene" uid="uid://s1la5f78r66q" path="res://scenes/game_screen/game_over/multiplayer.tscn" id="11_0ur1o"]
+[ext_resource type="Texture2D" uid="uid://cop7nttfgrbmo" path="res://assets/images/game_screen_element/top_red_score.png" id="11_87w4s"]
+[ext_resource type="Texture2D" uid="uid://m555smhy0j44" path="res://assets/images/resources/coins.png" id="12_qp728"]
+[ext_resource type="FontFile" uid="uid://ca26l8iy22dei" path="res://assets/font/Nunito-Regular.ttf" id="14_aw1ia"]
+[ext_resource type="Texture2D" uid="uid://ddqkpf7xd34r7" path="res://assets/images/resources/diamonds.png" id="14_mlbgf"]
+[ext_resource type="FontFile" uid="uid://dhvscouix7nc1" path="res://assets/font/BalooDa-Regular.ttf" id="15_8eieh"]
+[ext_resource type="Texture2D" uid="uid://b5kxkb3fguntg" path="res://assets/images/joker/hint.png" id="18_q5mve"]
+[ext_resource type="Texture2D" uid="uid://bpy2j35ohg3et" path="res://assets/images/joker/move_point.png" id="19_3vm6k"]
+[ext_resource type="Texture2D" uid="uid://1hjgmqaybr26" path="res://assets/images/joker/more_move.png" id="20_1snap"]
+[ext_resource type="Texture2D" uid="uid://chhhryb8lirtj" path="res://assets/images/joker/sniper_mode.png" id="21_6hr60"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y4vhv"]
+texture = ExtResource("8_6oann")
 
 [node name="GameScreen" type="Node2D"]
 script = ExtResource("1_atnf4")
@@ -24,7 +31,7 @@ script = ExtResource("1_atnf4")
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_right = 1285.0
 offset_bottom = 715.0
-texture = ExtResource("2_qorhl")
+texture = ExtResource("2_tofnq")
 expand_mode = 1
 
 [node name="GameBoardSection" parent="." instance=ExtResource("2_qljml")]
@@ -42,181 +49,248 @@ grow_vertical = 0
 script = ExtResource("3_uthby")
 deadDotScene = ExtResource("3_aktai")
 
-[node name="PauseButton" type="Button" parent="."]
-offset_left = 22.0
-offset_top = 24.0
-offset_right = 542.0
-offset_bottom = 544.0
-scale = Vector2(0.1, 0.1)
+[node name="PauseButton" type="TextureButton" parent="."]
+offset_left = 59.0
+offset_right = 115.0
+offset_bottom = 59.0
+scale = Vector2(0.25, 0.25)
 theme = ExtResource("4_mdd5m")
-icon = ExtResource("5_837y2")
+texture_normal = ExtResource("7_636ee")
 
-[node name="Ressources" type="HBoxContainer" parent="."]
-offset_left = 1023.0
-offset_top = 57.0
-offset_right = 1230.0
-offset_bottom = 122.0
+[node name="ResourcePanel" type="Panel" parent="."]
+offset_left = 1139.0
+offset_right = 1289.0
+offset_bottom = 52.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_y4vhv")
 
-[node name="Coins" type="HBoxContainer" parent="Ressources"]
-layout_mode = 2
-size_flags_horizontal = 8
-alignment = 2
+[node name="ChronoTexture" type="TextureRect" parent="."]
+offset_left = 577.0
+offset_right = 969.0
+offset_bottom = 232.0
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("9_r3t0q")
 
-[node name="TextureRect" type="TextureRect" parent="Ressources/Coins"]
-layout_mode = 2
-texture = ExtResource("6_x16q7")
+[node name="Player1ScoreTexture" type="TextureRect" parent="."]
+offset_left = 223.0
+offset_right = 1437.0
+offset_bottom = 230.0
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("10_schwj")
 
-[node name="CoinValue" type="Label" parent="Ressources/Coins"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
+[node name="Player2ScoreTexture" type="TextureRect" parent="."]
+offset_left = 729.0
+offset_right = 1943.0
+offset_bottom = 230.0
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("11_87w4s")
+
+[node name="Coins" type="Node2D" parent="."]
+position = Vector2(1162, 9)
+
+[node name="TextureRect" type="TextureRect" parent="Coins"]
+offset_left = -8.0
+offset_right = 136.0
+offset_bottom = 144.0
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("12_qp728")
+
+[node name="CoinValue" type="Label" parent="Coins"]
+offset_left = 24.0
+offset_top = -2.0
+offset_right = 52.0
+offset_bottom = 32.0
+theme_override_colors/font_color = Color(0.00392157, 0.00392157, 0.00392157, 1)
+theme_override_fonts/font = ExtResource("14_aw1ia")
+theme_override_font_sizes/font_size = 24
 text = "20"
 
-[node name="Diamonds" type="HBoxContainer" parent="Ressources"]
-layout_mode = 2
-alignment = 2
+[node name="Diamonds" type="Node2D" parent="."]
+position = Vector2(1224, 12)
 
-[node name="TextureRect" type="TextureRect" parent="Ressources/Diamonds"]
-layout_mode = 2
-texture = ExtResource("7_ac4mj")
+[node name="TextureRect" type="TextureRect" parent="Diamonds"]
+offset_left = -1.0
+offset_top = -3.0
+offset_right = 143.0
+offset_bottom = 141.0
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("14_mlbgf")
 
-[node name="DiamonValue" type="Label" parent="Ressources/Diamonds"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
+[node name="DiamonValue" type="Label" parent="Diamonds"]
+offset_left = 32.0
+offset_top = -6.0
+offset_right = 60.0
+offset_bottom = 28.0
+theme_override_colors/font_color = Color(0.00392157, 0.00392157, 0.00392157, 1)
+theme_override_fonts/font = ExtResource("14_aw1ia")
+theme_override_font_sizes/font_size = 24
 text = "20"
-
-[node name="Players" type="VBoxContainer" parent="."]
-offset_left = 1122.0
-offset_top = 40.0
-offset_right = 1240.0
-offset_bottom = 140.0
-
-[node name="Player1Score" type="HBoxContainer" parent="Players"]
-layout_mode = 2
 
 [node name="TimeLeft" type="Label" parent="."]
-offset_left = 1135.0
-offset_top = 650.0
-offset_right = 1229.0
-offset_bottom = 700.0
-theme_override_font_sizes/font_size = 36
+offset_left = 590.0
+offset_top = 1.0
+offset_right = 668.0
+offset_bottom = 42.0
+theme_override_colors/font_color = Color(0.00392157, 0.00392157, 0.00392157, 1)
+theme_override_fonts/font = ExtResource("14_aw1ia")
+theme_override_font_sizes/font_size = 24
 text = "00:00"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Player" type="HBoxContainer" parent="."]
-offset_left = 38.0
-offset_top = 293.0
-offset_right = 156.0
-offset_bottom = 316.0
-
-[node name="TextureRect" type="TextureRect" parent="Player"]
-layout_mode = 2
-texture = ExtResource("8_me4hm")
-expand_mode = 2
-
-[node name="PlayerName" type="Label" parent="Player"]
-layout_mode = 2
+[node name="PlayerName" type="Label" parent="."]
+offset_left = 243.0
+offset_top = 4.0
+offset_right = 447.0
+offset_bottom = 38.0
+theme_override_colors/font_color = Color(0.00392157, 0.00392157, 0.00392157, 1)
+theme_override_fonts/font = ExtResource("14_aw1ia")
+theme_override_font_sizes/font_size = 24
 text = "Player 1 "
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="PlayerScore" type="Label" parent="."]
-offset_left = 72.0
-offset_top = 313.0
-offset_right = 112.0
-offset_bottom = 390.0
-theme_override_font_sizes/font_size = 56
+offset_left = 451.0
+offset_right = 528.0
+offset_bottom = 55.0
+theme_override_fonts/font = ExtResource("15_8eieh")
+theme_override_font_sizes/font_size = 32
 text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Computer" type="HBoxContainer" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 1118.0
-offset_top = 307.0
-offset_right = 1236.0
-offset_bottom = 330.0
-grow_horizontal = 2
-size_flags_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="Computer"]
-layout_mode = 2
-texture = ExtResource("9_fgacd")
-expand_mode = 2
-
-[node name="Computer" type="Label" parent="Computer"]
-layout_mode = 2
+[node name="ComputerName" type="Label" parent="."]
+offset_left = 811.0
+offset_top = 1.0
+offset_right = 1019.0
+offset_bottom = 37.0
+theme_override_colors/font_color = Color(0.00392157, 0.00392157, 0.00392157, 1)
+theme_override_fonts/font = ExtResource("14_aw1ia")
+theme_override_font_sizes/font_size = 24
 text = "Computer"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ComputerScore" type="Label" parent="."]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 1154.0
-offset_top = 320.0
-offset_right = 1194.0
-offset_bottom = 397.0
+offset_left = 735.0
+offset_top = -1.0
+offset_right = 808.0
+offset_bottom = 54.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 56
+theme_override_fonts/font = ExtResource("15_8eieh")
+theme_override_font_sizes/font_size = 32
 text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Timer" type="Timer" parent="."]
 
 [node name="PauseGame" parent="." instance=ExtResource("10_fnwww")]
 process_mode = 2
+visible = false
 
 [node name="GameOverMenu" parent="." instance=ExtResource("11_0ur1o")]
 visible = false
 
-[node name="Node" type="Node" parent="."]
+[node name="Joker" type="Node2D" parent="."]
+position = Vector2(-32, 642)
 
-[node name="Hint" type="Node2D" parent="Node"]
-position = Vector2(462, 650)
+[node name="Hint" type="Node2D" parent="Joker"]
+position = Vector2(465, 2)
 
-[node name="HintButton" type="Button" parent="Node/Hint"]
-offset_right = 72.0
-offset_bottom = 72.0
-scale = Vector2(0.65, 0.65)
-icon = ExtResource("12_kjjkq")
+[node name="Button" type="TextureButton" parent="Joker/Hint"]
+offset_left = -15.0
+offset_top = -3.0
+offset_right = 35.0
+offset_bottom = 55.0
+texture_normal = ExtResource("18_q5mve")
 
-[node name="Number" type="Label" parent="Node/Hint"]
-offset_right = 40.0
+[node name="Number" type="Label" parent="Joker/Hint"]
+offset_left = -38.0
+offset_top = -27.0
+offset_right = 10.0
+offset_bottom = 21.0
+theme_override_colors/font_color = Color(0.00392157, 0.00392157, 0.00392157, 1)
+theme_override_colors/font_outline_color = Color(0.882353, 0.886275, 0.882353, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("15_8eieh")
+theme_override_font_sizes/font_size = 24
+text = "0
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Move" type="Node2D" parent="Joker"]
+position = Vector2(573, 1)
+
+[node name="Button" type="TextureButton" parent="Joker/Move"]
+offset_right = 53.0
+offset_bottom = 55.0
+texture_normal = ExtResource("19_3vm6k")
+
+[node name="Number" type="Label" parent="Joker/Move"]
+offset_left = -22.0
+offset_top = -25.0
+offset_right = 26.0
 offset_bottom = 23.0
+theme_override_colors/font_color = Color(0.00392157, 0.00392157, 0.00392157, 1)
+theme_override_colors/font_outline_color = Color(0.882353, 0.886275, 0.882353, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("15_8eieh")
+theme_override_font_sizes/font_size = 24
+text = "0
+"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Move" type="Node2D" parent="Node"]
-position = Vector2(580, 650)
+[node name="Additional" type="Node2D" parent="Joker"]
+position = Vector2(698, 0)
 
-[node name="MovetButton" type="Button" parent="Node/Move"]
-offset_right = 520.0
-offset_bottom = 520.0
-scale = Vector2(0.08, 0.08)
-icon = ExtResource("13_n2ghj")
+[node name="Button" type="TextureButton" parent="Joker/Additional"]
+offset_right = 50.0
+offset_bottom = 55.0
+texture_normal = ExtResource("20_1snap")
 
-[node name="Number" type="Label" parent="Node/Move"]
-offset_right = 40.0
+[node name="Number" type="Label" parent="Joker/Additional"]
+offset_left = -23.0
+offset_top = -25.0
+offset_right = 25.0
 offset_bottom = 23.0
+theme_override_colors/font_color = Color(0.00392157, 0.00392157, 0.00392157, 1)
+theme_override_colors/font_outline_color = Color(0.882353, 0.886275, 0.882353, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("15_8eieh")
+theme_override_font_sizes/font_size = 24
+text = "0
+"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Additional" type="Node2D" parent="Node"]
-position = Vector2(698, 650)
+[node name="SniperMode" type="Node2D" parent="Joker"]
+position = Vector2(825, 0)
 
-[node name="AdditionalButton" type="Button" parent="Node/Additional"]
-offset_right = 520.0
-offset_bottom = 520.0
-scale = Vector2(0.08, 0.08)
-icon = ExtResource("14_ruchx")
-
-[node name="Number" type="Label" parent="Node/Additional"]
-offset_right = 40.0
-offset_bottom = 23.0
-
-[node name="SniperMode" type="Node2D" parent="Node"]
-position = Vector2(800, 650)
-
-[node name="SniperModeButton" type="Button" parent="Node/SniperMode"]
+[node name="Button" type="TextureButton" parent="Joker/SniperMode"]
 offset_right = 8.0
 offset_bottom = 8.0
-scale = Vector2(0.08, 0.08)
-icon = ExtResource("15_2ryy3")
+texture_normal = ExtResource("21_6hr60")
 
-[node name="Number" type="Label" parent="Node/SniperMode"]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="Number" type="Label" parent="Joker/SniperMode"]
+offset_left = -22.0
+offset_top = -23.0
+offset_right = 26.0
+offset_bottom = 25.0
+theme_override_colors/font_color = Color(0.00392157, 0.00392157, 0.00392157, 1)
+theme_override_colors/font_outline_color = Color(0.882353, 0.886275, 0.882353, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("15_8eieh")
+theme_override_font_sizes/font_size = 24
+text = "0
+"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="Combo" from="GameBoardSection" to="." method="OnCombo"]
 [connection signal="EndGame" from="GameBoardSection" to="." method="OnEndGame"]

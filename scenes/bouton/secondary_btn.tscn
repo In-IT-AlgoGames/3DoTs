@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://c4srt18s3lyw2"]
+
+[ext_resource type="Texture2D" uid="uid://c0k532jvwtl2t" path="res://assets/images/black_btn_normal.png" id="1_2ipaq"]
+[ext_resource type="Texture2D" uid="uid://cl0xepqyvqddn" path="res://assets/images/black_btn_pressed.png" id="2_22v0j"]
+[ext_resource type="Texture2D" uid="uid://cogrosxfo8duo" path="res://assets/images/black_btn_hover.png" id="3_dl4so"]
+[ext_resource type="FontFile" uid="uid://b6nnraqpjrpuf" path="res://assets/font/TOONISH.ttf" id="4_2d2a5"]
+[ext_resource type="Script" path="res://scripts/Controllers/SecondaryBtn.cs" id="4_2k7ea"]
+
+[node name="Multiplayer" type="TextureButton"]
+offset_left = 715.0
+offset_top = 413.0
+offset_right = 1065.0
+offset_bottom = 523.0
+size_flags_vertical = 3
+texture_normal = ExtResource("1_2ipaq")
+texture_pressed = ExtResource("2_22v0j")
+texture_hover = ExtResource("3_dl4so")
+script = ExtResource("4_2k7ea")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_2d2a5")
+theme_override_font_sizes/font_size = 44
+text = "Two players"
+
+[connection signal="button_down" from="." to="." method="OnButtonDown"]
+[connection signal="button_up" from="." to="." method="OnButtonUp"]
+[connection signal="mouse_entered" from="." to="." method="OnMouseEntered"]
+[connection signal="mouse_exited" from="." to="." method="OnMouseExited"]

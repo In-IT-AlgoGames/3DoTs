@@ -1,0 +1,76 @@
+[gd_scene load_steps=10 format=3 uid="uid://s1la5f78r66q"]
+
+[ext_resource type="Script" path="res://scripts/Controllers/GameOverMenu.cs" id="1_mc3el"]
+[ext_resource type="Texture2D" uid="uid://boxdkh6mww06" path="res://assets/images/game_over_bg.png" id="2_xp1hl"]
+[ext_resource type="FontFile" uid="uid://dhvscouix7nc1" path="res://assets/font/BalooDa-Regular.ttf" id="3_3cyc0"]
+[ext_resource type="FontFile" uid="uid://mrdy76e1pqs7" path="res://assets/font/Nunito-Bold.ttf" id="4_uxvdo"]
+[ext_resource type="PackedScene" uid="uid://b1b6yeion1uwu" path="res://scenes/bouton/exit.tscn" id="5_20th2"]
+[ext_resource type="PackedScene" uid="uid://dwvmlts637874" path="res://scenes/bouton/restart.tscn" id="6_x8h8t"]
+[ext_resource type="Texture2D" uid="uid://b1fni2dj5wo26" path="res://assets/images/blue_normal.png" id="7_u7ny1"]
+[ext_resource type="Texture2D" uid="uid://bhw87ho4338ax" path="res://assets/images/blue_clicked.png" id="8_mgdvl"]
+[ext_resource type="Texture2D" uid="uid://02hognld3f6c" path="res://assets/images/blue_hover.png" id="9_f4fgg"]
+
+[node name="GameOverMenu" type="CanvasLayer"]
+process_mode = 2
+script = ExtResource("1_mc3el")
+
+[node name="Panel" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -230.0
+offset_top = -140.0
+offset_right = 230.0
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_xp1hl")
+
+[node name="WinnerLabel" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -178.0
+offset_top = -94.0
+offset_right = 199.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.905882, 0.247059, 0.247059, 1)
+theme_override_fonts/font = ExtResource("3_3cyc0")
+theme_override_font_sizes/font_size = 64
+text = "Player Wins!!"
+horizontal_alignment = 1
+
+[node name="Title" type="Label" parent="."]
+offset_left = 425.0
+offset_top = 164.0
+offset_right = 871.0
+offset_bottom = 224.0
+theme_override_fonts/font = ExtResource("4_uxvdo")
+theme_override_font_sizes/font_size = 32
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ExitButton" parent="." instance=ExtResource("5_20th2")]
+offset_left = 673.0
+offset_top = 378.0
+offset_right = 793.0
+offset_bottom = 498.0
+
+[node name="RestartButton" parent="." instance=ExtResource("6_x8h8t")]
+offset_left = 507.0
+offset_top = 377.0
+offset_right = 627.0
+offset_bottom = 497.0
+texture_normal = ExtResource("7_u7ny1")
+texture_pressed = ExtResource("8_mgdvl")
+texture_hover = ExtResource("9_f4fgg")
+
+[connection signal="pressed" from="ExitButton" to="." method="OnGoOutButtonPressed"]
+[connection signal="pressed" from="RestartButton" to="." method="OnRestartButtonPressed"]

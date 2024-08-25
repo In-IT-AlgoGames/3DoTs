@@ -18,7 +18,7 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_70m83"]
-bg_color = Color(0.905882, 0.247059, 0.247059, 1)
+bg_color = Color(0.00392157, 0.552941, 0.854902, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -41,7 +41,7 @@ anchor_bottom = 0.5
 offset_left = -195.0
 offset_top = -209.0
 offset_right = 205.0
-offset_bottom = 191.0
+offset_bottom = 176.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ahjdr")

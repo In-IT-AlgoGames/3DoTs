@@ -1,0 +1,78 @@
+[gd_scene load_steps=10 format=3 uid="uid://bg4p6y8dm5176"]
+
+[ext_resource type="Script" path="res://scripts/Controllers/GameOverMenu.cs" id="1_s1ro6"]
+[ext_resource type="Texture2D" uid="uid://boxdkh6mww06" path="res://assets/images/game_over_bg.png" id="2_ncgek"]
+[ext_resource type="FontFile" uid="uid://dhvscouix7nc1" path="res://assets/font/BalooDa-Regular.ttf" id="3_75cjy"]
+[ext_resource type="FontFile" uid="uid://mrdy76e1pqs7" path="res://assets/font/Nunito-Bold.ttf" id="4_eas67"]
+[ext_resource type="PackedScene" uid="uid://b1b6yeion1uwu" path="res://scenes/bouton/exit.tscn" id="5_7udtg"]
+[ext_resource type="PackedScene" uid="uid://dwvmlts637874" path="res://scenes/bouton/restart.tscn" id="6_bwutx"]
+[ext_resource type="Texture2D" uid="uid://b1fni2dj5wo26" path="res://assets/images/blue_normal.png" id="7_posmh"]
+[ext_resource type="Texture2D" uid="uid://bhw87ho4338ax" path="res://assets/images/blue_clicked.png" id="8_1oobw"]
+[ext_resource type="Texture2D" uid="uid://02hognld3f6c" path="res://assets/images/blue_hover.png" id="9_gpvdj"]
+
+[node name="GameOverMenu" type="CanvasLayer"]
+process_mode = 2
+script = ExtResource("1_s1ro6")
+
+[node name="Panel" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -230.0
+offset_top = -140.0
+offset_right = 230.0
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ncgek")
+
+[node name="WinnerLabel" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -171.0
+offset_top = -90.0
+offset_right = 206.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.905882, 0.247059, 0.247059, 1)
+theme_override_colors/font_outline_color = Color(0.00392157, 0.00392157, 0.00392157, 1)
+theme_override_constants/outline_size = 30
+theme_override_fonts/font = ExtResource("3_75cjy")
+theme_override_font_sizes/font_size = 64
+text = "You win!!!"
+horizontal_alignment = 1
+
+[node name="Title" type="Label" parent="."]
+offset_left = 425.0
+offset_top = 164.0
+offset_right = 871.0
+offset_bottom = 224.0
+theme_override_fonts/font = ExtResource("4_eas67")
+theme_override_font_sizes/font_size = 32
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ExitButton" parent="." instance=ExtResource("5_7udtg")]
+offset_left = 681.0
+offset_top = 378.0
+offset_right = 801.0
+offset_bottom = 498.0
+
+[node name="RestartButton" parent="." instance=ExtResource("6_bwutx")]
+offset_left = 507.0
+offset_top = 377.0
+offset_right = 627.0
+offset_bottom = 497.0
+texture_normal = ExtResource("7_posmh")
+texture_pressed = ExtResource("8_1oobw")
+texture_hover = ExtResource("9_gpvdj")
+
+[connection signal="pressed" from="ExitButton" to="." method="OnGoOutButtonPressed"]
+[connection signal="pressed" from="RestartButton" to="." method="OnRestartButtonPressed"]

@@ -1,0 +1,183 @@
+[gd_scene load_steps=14 format=3 uid="uid://c65nfqf1u0pih"]
+
+[ext_resource type="Script" path="res://scripts/Controllers/main_option/main_option.cs" id="1_7rgjc"]
+[ext_resource type="Texture2D" uid="uid://dcgv24t1dc780" path="res://assets/images/background/wood_plan.jpg" id="2_8p34r"]
+[ext_resource type="PackedScene" uid="uid://dblprrvr0r4e5" path="res://scenes/bouton/back.tscn" id="3_3bdll"]
+[ext_resource type="Script" path="res://scripts/Controllers/main_option/audio.cs" id="3_4p7d2"]
+[ext_resource type="FontFile" uid="uid://b6nnraqpjrpuf" path="res://assets/font/TOONISH.ttf" id="3_7shxw"]
+[ext_resource type="Texture2D" uid="uid://hrofcpdux3su" path="res://assets/images/game_option.png" id="3_vfubh"]
+[ext_resource type="FontFile" uid="uid://ca26l8iy22dei" path="res://assets/font/Nunito-Regular.ttf" id="7_5kxpp"]
+[ext_resource type="Texture2D" uid="uid://b06xj2isk3lhl" path="res://assets/images/OK_BTN/normal.png" id="8_5wemd"]
+[ext_resource type="FontFile" uid="uid://mrdy76e1pqs7" path="res://assets/font/Nunito-Bold.ttf" id="8_o6viv"]
+[ext_resource type="Texture2D" uid="uid://dmt6m35xxfoe8" path="res://assets/images/edit_name.png" id="8_sl32y"]
+[ext_resource type="Texture2D" uid="uid://d4f6ano4vcuk6" path="res://assets/images/OK_BTN/pressed.png" id="9_jhna0"]
+[ext_resource type="Texture2D" uid="uid://cd76swnx3uaeu" path="res://assets/images/OK_BTN/hover.png" id="10_hv6xh"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bjkkm"]
+texture = ExtResource("8_sl32y")
+
+[node name="main_option" type="Node2D"]
+script = ExtResource("1_7rgjc")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1290.0
+offset_bottom = 720.0
+texture = ExtResource("2_8p34r")
+expand_mode = 2
+
+[node name="Background" type="TextureRect" parent="."]
+offset_left = 388.0
+offset_top = 63.0
+offset_right = 897.0
+offset_bottom = 619.0
+texture = ExtResource("3_vfubh")
+
+[node name="Label" type="Label" parent="Background"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -249.5
+offset_top = -274.0
+offset_right = 251.5
+offset_bottom = -146.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_constants/shadow_offset_x = -1
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("3_7shxw")
+theme_override_font_sizes/font_size = 64
+text = "Options"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackButton" parent="." instance=ExtResource("3_3bdll")]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Namelabel" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 1050.0
+offset_top = 85.0
+offset_right = 1225.0
+offset_bottom = 130.0
+grow_horizontal = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("3_7shxw")
+theme_override_font_sizes/font_size = 32
+text = "playerName"
+
+[node name="audio" type="Node" parent="Control"]
+script = ExtResource("3_4p7d2")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control"]
+layout_mode = 2
+offset_left = 552.0
+offset_top = 376.0
+offset_right = 682.0
+offset_bottom = 426.0
+
+[node name="Mute" type="Label" parent="Control/HBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.0117647, 0.0117647, 0.0156863, 1)
+theme_override_fonts/font = ExtResource("7_5kxpp")
+theme_override_font_sizes/font_size = 36
+text = "Mute"
+
+[node name="muteBtn" type="CheckButton" parent="Control/HBoxContainer2"]
+layout_direction = 1
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 7
+
+[node name="HBoxContainer3" type="Node2D" parent="Control"]
+position = Vector2(384, 512)
+
+[node name="Name" type="Label" parent="Control/HBoxContainer3"]
+offset_left = 169.0
+offset_top = -54.0
+offset_right = 265.0
+offset_bottom = -4.0
+theme_override_colors/font_color = Color(0.0117647, 0.0117647, 0.0156863, 1)
+theme_override_fonts/font = ExtResource("7_5kxpp")
+theme_override_font_sizes/font_size = 36
+text = "Name"
+
+[node name="NameChange" type="LineEdit" parent="Control/HBoxContainer3"]
+offset_left = 56.0
+offset_top = -8.0
+offset_right = 384.0
+offset_bottom = 64.0
+size_flags_horizontal = 3
+theme_override_colors/font_placeholder_color = Color(0.0705882, 0.545098, 0.8, 0.776471)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxTexture_bjkkm")
+placeholder_text = "Change your name here"
+alignment = 1
+
+[node name="BtnChange" type="TextureButton" parent="Control/HBoxContainer3"]
+offset_left = 392.0
+offset_top = 8.0
+offset_right = 472.0
+offset_bottom = 72.0
+size_flags_horizontal = 10
+size_flags_stretch_ratio = 0.0
+texture_normal = ExtResource("8_5wemd")
+texture_pressed = ExtResource("9_jhna0")
+texture_hover = ExtResource("10_hv6xh")
+
+[node name="teste" type="AudioStreamPlayer2D" parent="."]
+
+[node name="EditAudio" type="Node2D" parent="."]
+position = Vector2(-32, 0)
+
+[node name="HSliderVolume" type="HSlider" parent="EditAudio"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 495.0
+offset_top = 287.0
+offset_right = 781.0
+offset_bottom = 303.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Volume" type="Label" parent="EditAudio"]
+offset_left = 800.0
+offset_top = 275.0
+offset_right = 840.0
+offset_bottom = 309.0
+theme_override_colors/font_color = Color(0.00392157, 0.00392157, 0.00392157, 1)
+theme_override_fonts/font = ExtResource("8_o6viv")
+theme_override_font_sizes/font_size = 24
+text = "10"
+
+[node name="Mute" type="Label" parent="EditAudio"]
+offset_left = 590.0
+offset_top = 216.0
+offset_right = 685.0
+offset_bottom = 266.0
+theme_override_colors/font_color = Color(0.0117647, 0.0117647, 0.0156863, 1)
+theme_override_fonts/font = ExtResource("7_5kxpp")
+theme_override_font_sizes/font_size = 36
+text = "Audio"
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="value_changed" from="EditAudio/HSliderVolume" to="." method="_on_h_slider_volume_value_changed"]

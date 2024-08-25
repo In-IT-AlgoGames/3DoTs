@@ -1,47 +1,79 @@
-[gd_scene load_steps=3 format=3 uid="uid://byx1hlp66c8rf"]
+[gd_scene load_steps=12 format=3 uid="uid://byx1hlp66c8rf"]
 
 [ext_resource type="Script" path="res://scripts/Controllers/MultiplayerMenu.cs" id="1_uwea7"]
-[ext_resource type="Texture2D" uid="uid://b8j3xfsg4myw0" path="res://assets/images/log-out.png" id="2_r24ef"]
+[ext_resource type="Texture2D" uid="uid://c0httpj32su36" path="res://assets/images/background/bg-7-wood.png" id="2_2ryqd"]
+[ext_resource type="PackedScene" uid="uid://dblprrvr0r4e5" path="res://scenes/bouton/back.tscn" id="3_8f1og"]
+[ext_resource type="Texture2D" uid="uid://ct5t33g5y6lo2" path="res://assets/images/multiplayer_menu/normal.png" id="3_nfdkr"]
+[ext_resource type="FontFile" uid="uid://b6nnraqpjrpuf" path="res://assets/font/TOONISH.ttf" id="4_dxoef"]
+[ext_resource type="Texture2D" uid="uid://gnrphdhksi3q" path="res://assets/images/multiplayer_menu/pressed.png" id="4_ms7gc"]
+[ext_resource type="Texture2D" uid="uid://d1eyda1sp1ni2" path="res://assets/images/multiplayer_menu/hover.png" id="5_bjs8u"]
+[ext_resource type="Texture2D" uid="uid://cx53e7l5x66r7" path="res://assets/images/multiplayer_menu/normal1.png" id="6_h2f00"]
+[ext_resource type="Texture2D" uid="uid://cdposlud1jqt6" path="res://assets/images/multiplayer_menu/pressed1.png" id="7_ffuhp"]
+[ext_resource type="Texture2D" uid="uid://52y8l85nsiqt" path="res://assets/images/multiplayer_menu/hover1.png" id="8_sfgo4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_njveo"]
+bg_color = Color(0.00392157, 0.00392157, 0.00392157, 1)
 
 [node name="MultiplayerMenu" type="Node2D"]
 script = ExtResource("1_uwea7")
 
-[node name="LocalButton" type="Button" parent="."]
-offset_left = 517.0
-offset_top = 272.0
-offset_right = 706.0
-offset_bottom = 355.0
-text = "Local"
+[node name="Panel" type="Sprite2D" parent="."]
+position = Vector2(638.5, 361.5)
+scale = Vector2(1.00078, 0.952569)
+texture = ExtResource("2_2ryqd")
 
-[node name="LanButton" type="Button" parent="."]
-offset_left = 523.0
-offset_top = 427.0
-offset_right = 712.0
-offset_bottom = 510.0
-text = "LAN"
-
-[node name="BackButton" type="Button" parent="."]
-offset_left = 64.0
-offset_top = 64.0
+[node name="LocalButton" type="TextureButton" parent="."]
+offset_left = 131.0
+offset_top = 300.0
 offset_right = 584.0
-offset_bottom = 584.0
-scale = Vector2(0.1, 0.1)
-icon = ExtResource("2_r24ef")
+offset_bottom = 625.0
+texture_normal = ExtResource("3_nfdkr")
+texture_pressed = ExtResource("4_ms7gc")
+texture_hover = ExtResource("5_bjs8u")
 
-[node name="Label" type="Label" parent="."]
-anchors_preset = -1
+[node name="LanButton" type="TextureButton" parent="."]
+offset_left = 710.0
+offset_top = 300.0
+offset_right = 1167.0
+offset_bottom = 625.0
+texture_normal = ExtResource("6_h2f00")
+texture_pressed = ExtResource("7_ffuhp")
+texture_hover = ExtResource("8_sfgo4")
+
+[node name="BackButton2" parent="." instance=ExtResource("3_8f1og")]
+offset_left = 62.0
+offset_top = 124.0
+offset_right = 126.0
+offset_bottom = 180.0
+
+[node name="Panel2" type="Panel" parent="."]
+offset_left = 145.0
+offset_top = 113.0
+offset_right = 565.0
+offset_bottom = 203.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_njveo")
+
+[node name="Label" type="Label" parent="Panel2"]
+layout_mode = 1
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 452.0
-offset_top = 137.0
-offset_right = 807.0
-offset_bottom = 225.0
+offset_left = -179.5
+offset_top = -32.0
+offset_right = 179.5
+offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_constants/shadow_offset_x = -1
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("4_dxoef")
 theme_override_font_sizes/font_size = 64
 text = "Multiplayer"
 
 [connection signal="pressed" from="LocalButton" to="." method="OnLocalButtonPressed"]
 [connection signal="pressed" from="LanButton" to="." method="OnMultiplayerButtonPressed"]
-[connection signal="pressed" from="BackButton" to="." method="OnBackButtonPressed"]
+[connection signal="pressed" from="BackButton2" to="." method="OnBackButtonPressed"]

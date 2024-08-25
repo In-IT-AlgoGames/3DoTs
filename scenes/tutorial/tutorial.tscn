@@ -1,0 +1,136 @@
+[gd_scene load_steps=10 format=3 uid="uid://drly42m7hlibq"]
+
+[ext_resource type="Script" path="res://scripts/Controllers/tutoriel.cs" id="1_xjh7i"]
+[ext_resource type="Texture2D" uid="uid://dcgv24t1dc780" path="res://assets/images/background/wood_plan.jpg" id="2_50wjt"]
+[ext_resource type="Texture2D" uid="uid://laxw1yo5bhdm" path="res://assets/images/firstDot.png" id="3_67gev"]
+[ext_resource type="FontFile" uid="uid://b6nnraqpjrpuf" path="res://assets/font/TOONISH.ttf" id="3_qtnel"]
+[ext_resource type="Texture2D" uid="uid://brh0m7vtadauf" path="res://assets/images/pointer.png" id="4_t80d1"]
+[ext_resource type="Texture2D" uid="uid://ccbadeheps4yh" path="res://assets/images/Capture d’écran 2024-08-24 053310.png" id="5_pqure"]
+[ext_resource type="PackedScene" uid="uid://dblprrvr0r4e5" path="res://scenes/bouton/back.tscn" id="6_7av15"]
+
+[sub_resource type="Theme" id="Theme_m1t6s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yfq2s"]
+
+[node name="Tutoriel" type="Node2D"]
+script = ExtResource("1_xjh7i")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1285.0
+offset_bottom = 715.0
+texture = ExtResource("2_50wjt")
+expand_mode = 1
+
+[node name="First" type="Node2D" parent="."]
+position = Vector2(284, 118)
+
+[node name="Step1" type="Label" parent="First"]
+offset_left = -28.0
+offset_top = -34.0
+offset_right = 268.0
+offset_bottom = 4.0
+theme = SubResource("Theme_m1t6s")
+theme_override_colors/font_color = Color(0.00392157, 0.00392157, 0.00392157, 1)
+theme_override_colors/font_outline_color = Color(0.894118, 0.894118, 0.894118, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("3_qtnel")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_yfq2s")
+text = "1) Touch To place Dot"
+horizontal_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="First"]
+position = Vector2(125, 117)
+scale = Vector2(0.440142, 0.32392)
+texture = ExtResource("3_67gev")
+region_rect = Rect2(500, 500, 500, 500)
+
+[node name="pointer" type="Sprite2D" parent="First"]
+position = Vector2(84, 154)
+scale = Vector2(0.0859375, 0.0625)
+texture = ExtResource("4_t80d1")
+
+[node name="First2" type="Node2D" parent="."]
+position = Vector2(766, 158)
+
+[node name="Step2" type="Label" parent="First2"]
+offset_left = -14.0
+offset_top = -100.0
+offset_right = 450.0
+offset_bottom = 8.0
+theme = SubResource("Theme_m1t6s")
+theme_override_colors/font_color = Color(0.00392157, 0.00392157, 0.00392157, 1)
+theme_override_colors/font_outline_color = Color(0.894118, 0.894118, 0.894118, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("3_qtnel")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_yfq2s")
+text = "2) Aligned three points 
+to eliminate
+ the adverse Dots"
+horizontal_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="First2"]
+position = Vector2(217, 115)
+scale = Vector2(0.548908, 0.408667)
+texture = ExtResource("5_pqure")
+region_rect = Rect2(500, 500, 500, 500)
+
+[node name="First3" type="Node2D" parent="."]
+position = Vector2(150, 452)
+
+[node name="Step3" type="Label" parent="First3"]
+offset_left = 62.0
+offset_top = -80.0
+offset_right = 478.0
+offset_bottom = 28.0
+theme = SubResource("Theme_m1t6s")
+theme_override_colors/font_color = Color(0.00392157, 0.00392157, 0.00392157, 1)
+theme_override_colors/font_outline_color = Color(0.894118, 0.894118, 0.894118, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("3_qtnel")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_yfq2s")
+text = "3)Aligned three points 
+to eliminate the adverse 
+Dots"
+horizontal_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="First3"]
+position = Vector2(275, 133)
+scale = Vector2(0.548908, 0.408667)
+texture = ExtResource("5_pqure")
+region_rect = Rect2(500, 500, 500, 500)
+
+[node name="First4" type="Node2D" parent="."]
+position = Vector2(790, 464)
+
+[node name="Step4" type="Label" parent="First4"]
+offset_top = -75.0
+offset_right = 402.0
+offset_bottom = 33.0
+theme = SubResource("Theme_m1t6s")
+theme_override_colors/font_color = Color(0.00392157, 0.00392157, 0.00392157, 1)
+theme_override_colors/font_outline_color = Color(0.894118, 0.894118, 0.894118, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("3_qtnel")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_yfq2s")
+text = "4) Align three Dots 
+to eliminate 
+the adverse points"
+horizontal_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="First4"]
+position = Vector2(199, 132)
+scale = Vector2(0.548908, 0.408667)
+texture = ExtResource("5_pqure")
+region_rect = Rect2(500, 500, 500, 500)
+
+[node name="BackButton" parent="." instance=ExtResource("6_7av15")]
+offset_left = 100.0
+offset_top = 49.0
+offset_right = 164.0
+offset_bottom = 105.0
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

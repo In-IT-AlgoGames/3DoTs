@@ -1,16 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://dps3rcgs16nlc"]
+[gd_scene load_steps=3 format=3 uid="uid://dblprrvr0r4e5"]
 
-[ext_resource type="Texture2D" uid="uid://c85jj7lej73yr" path="res://assets/images/exit_btn/Group 19.png" id="1_e503r"]
-[ext_resource type="Texture2D" uid="uid://bxwggwymm6sl3" path="res://assets/images/exit_btn/Group 21.png" id="2_qh5j0"]
-[ext_resource type="Texture2D" uid="uid://cl27awsolmim0" path="res://assets/images/exit_btn/Group 20.png" id="3_ovq6u"]
+[ext_resource type="Texture2D" uid="uid://iqmtnbn3xile" path="res://assets/images/back_btn/normal.png" id="1_r7csi"]
+[ext_resource type="Texture2D" uid="uid://cw74jp7xu6sl7" path="res://assets/images/back_btn/pressed.png" id="2_ealv3"]
 
-[node name="Exit" type="TextureButton"]
-offset_left = 144.0
-offset_top = 36.0
-offset_right = 304.0
-offset_bottom = 196.0
-scale = Vector2(0.3, 0.3)
-size_flags_vertical = 3
-texture_normal = ExtResource("1_e503r")
-texture_pressed = ExtResource("2_qh5j0")
-texture_hover = ExtResource("3_ovq6u")
+[node name="BackButton" type="TextureButton"]
+offset_left = 108.0
+offset_top = 43.0
+offset_right = 158.0
+offset_bottom = 89.0
+texture_normal = ExtResource("1_r7csi")
+texture_pressed = ExtResource("2_ealv3")

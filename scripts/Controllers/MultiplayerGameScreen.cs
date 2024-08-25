@@ -22,8 +22,8 @@ public partial class MultiplayerGameScreen : Node2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		player1 = GetNode<Label>("Player1/Player1Name");
-		player2 = GetNode<Label>("Player2/Player2Name");
+		player1 = GetNode<Label>("Player1Name");
+		player2 = GetNode<Label>("Player2Name");
 		timeLeftLabel = GetNode<Label>("TimeLeft");
 		timer = GetNode<Timer>("Timer");
 		// Pause game menu
