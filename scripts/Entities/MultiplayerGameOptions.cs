@@ -7,7 +7,10 @@ public class MultiplayerGameOptions : Object
 	public int gameTime { get; set; }
 	public int boardSize { get; set; }
 	public List<string> playerNames { get; private set; } // Stores the names of players
-
+	public int hint = 0;
+	public int moveDot = 0;
+	public int additionalTurn = 0;
+	public int sniperNumber = 0;
 	public MultiplayerGameOptions()
 	{
 		// Initialize with default values

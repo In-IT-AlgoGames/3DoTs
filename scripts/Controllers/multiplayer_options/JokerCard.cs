@@ -19,7 +19,7 @@ public partial class JokerCard : TextureRect
 	}
 	private void OnIncreaseButtonPressed()
 	{
-		if (joker < 10 )
+		if (joker < 1 )
 		joker ++;
 		jokerNumberLabel.Text = joker.ToString();
 	}
@@ -28,7 +28,9 @@ public partial class JokerCard : TextureRect
 		if (joker > 0 )
 		joker --;
 		jokerNumberLabel.Text = joker.ToString();
-	
+	}
+	public int GetJokerNumber(){
+		return joker;
 	}
 }
 

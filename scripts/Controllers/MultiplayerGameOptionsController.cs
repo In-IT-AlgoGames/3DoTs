@@ -24,7 +24,6 @@ public partial class MultiplayerGameOptionsController : Node2D
 	
 	public override void _Ready()
 	{
-		
 		GetNode<Label>("PlayButton/Label").Text = "Play";
 		Node timerNode = GetNode<Node>("GameTime").GetNode<Node>("Timer");
 		timerLabel = timerNode.GetNode<Label>("TimerLabel");
@@ -73,6 +72,10 @@ public partial class MultiplayerGameOptionsController : Node2D
 			
 			gameOptions.boardSize = boardSize;
 			gameOptions.gameTime = gameTime;
+			gameOptions.hint = GetNode<JokerCard>("Joker/Hint").GetJokerNumber();
+			gameOptions.moveDot = GetNode<JokerCard>("Joker/Move").GetJokerNumber();
+			gameOptions.additionalTurn = GetNode<JokerCard>("Joker/Move").GetJokerNumber();
+			gameOptions.additionalTurn = GetNode<JokerCard>("Joker/Sniper").GetJokerNumber();
 			gameOptions.AddPlayerName(player1Name);
 			gameOptions.AddPlayerName(player2Name);
 			
@@ -102,7 +105,6 @@ public partial class MultiplayerGameOptionsController : Node2D
 	{
 		timerLabel.Text = ConvertSecondsToMinuteSecond(gameTime);
 	}
-	
 	
 	private void OnBoardSizeButtonPressed()
 	{

@@ -132,7 +132,8 @@ public partial class OneplayerGameBoard : GridContainer
 // this is the part where the IA examine the gameboard and apply it
 	public override void _Process(double delta)
 	{
-		if (currentPlayerId == aiPlayer.GetId())  {
+		if (position.X == -1) {
+			if (currentPlayerId == aiPlayer.GetId())  {
 				Point newPoint = aiPlay.BestMove(gameBoardMatrix, player, aiPlayer, aiScore, playerScore, playerPoints, aiLevel);
 				int x = newPoint.GetX();
 				int y = newPoint.GetY();
@@ -168,7 +169,8 @@ public partial class OneplayerGameBoard : GridContainer
 				UpdateScoreLabel();
 				CheckEndGame();
 			}
-	}
+		}
+		}
 
 	public void CreateCells()
 	{
@@ -302,6 +304,7 @@ public partial class OneplayerGameBoard : GridContainer
 			MoveCurrentDot(position);
 			AddChild(currentDot);
 			SetCurrentDot();
+			position = new Vector2(-1,-1);
 			UpdateScoreLabel();
 			CheckEndGame();
 			}
@@ -314,16 +317,17 @@ public partial class OneplayerGameBoard : GridContainer
 	
 	private void SetCurrentDot()
 	{
-		currentDot = currentPlayerId == 1 ? (Node2D)redDotScene.Instantiate() : (Node2D)blueDotScene.Instantiate();
+		currentDot = currentPlayerId == 1 ? (Node2D)blueDotScene.Instantiate() : (Node2D)redDotScene.Instantiate();
 	}
 
 	private void MoveCurrentDot(Vector2 position)
 	{
 		currentDot.Position = position;
+		
 	}
 	
 	
-	 private List<Point> RemoveKilledPoints(List<Point> points)
+	private List<Point> RemoveKilledPoints(List<Point> points)
 	{
 		//points.RemoveAll(point => point.GetValue() < 0);
 	  // Find all points that should be removed

@@ -16,12 +16,39 @@ public partial class MultiplayerGameScreen : Node2D
 	int timeLeft;
 	int gameTime;
 	// Game paused menu
+	
+	int hint = 0;
+	int moveDot = 0;
+	int additionalTurn = 0;
+	int sniperNumber = 0;
 	CanvasLayer gamePausedMenu;
 	CanvasLayer gameOverMenu;
 	MultiplayerGameBoard gameBoardSection;
+	
+	// managing Joker Label
+	Label hintP1, moveDotP1, addMoveP1, sniperP1;
+	Label hintP2, moveDotP2, addMoveP2, sniperP2;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		hintP1 = GetNode<Label>("JokerPlayer1/Hint/Number");
+		hintP2 = GetNode<Label>("JokerPlayer2/Hint/Number");
+		
+		moveDotP1 = GetNode<Label>("JokerPlayer1/Move/Number");
+		moveDotP2 = GetNode<Label>("JokerPlayer2/Move/Number");
+		
+		addMoveP1 = GetNode<Label>("JokerPlayer1/Additional/Number");
+		addMoveP2 = GetNode<Label>("JokerPlayer2/Additional/Number");
+		
+		sniperP1 = GetNode<Label>("JokerPlayer1/SniperMode/Number");
+		sniperP2 = GetNode<Label>("JokerPlayer2/SniperMode/Number");
+		
+		
+		//hintP1 , moveDotP1, addMoveP1, sniperP1;
+		//hintP2, moveDotP2, addMoveP2, sniperP2;
+		
+		
+		
 		player1 = GetNode<Label>("Player1Name");
 		player2 = GetNode<Label>("Player2Name");
 		timeLeftLabel = GetNode<Label>("TimeLeft");
@@ -51,6 +78,10 @@ public partial class MultiplayerGameScreen : Node2D
 		
 		
 		this.gameOptions = gameOptions;
+		 hint = gameOptions.hint;
+		 moveDot = gameOptions.moveDot;
+		 additionalTurn = gameOptions.additionalTurn;
+		 sniperNumber = gameOptions.sniperNumber;
 		timeLeft = gameOptions.gameTime;
 		gameTime = timeLeft;
 	}

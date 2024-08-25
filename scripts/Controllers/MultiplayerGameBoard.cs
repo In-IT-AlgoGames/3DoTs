@@ -262,7 +262,7 @@ public partial class MultiplayerGameBoard : GridContainer
 	
 	private void SetCurrentDot()
 	{
-		currentDot = currentPlayerId == 1 ? (Node2D)redDotScene.Instantiate() : (Node2D)blueDotScene.Instantiate();
+		currentDot = currentPlayerId == 1 ? (Node2D)blueDotScene.Instantiate() : (Node2D)redDotScene.Instantiate();
 	}
 
 	private void MoveCurrentDot(Vector2 position)
