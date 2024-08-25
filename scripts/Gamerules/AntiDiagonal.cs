@@ -2,7 +2,6 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-
 public class AntiDiagonal : Object
 {
 	private Matrix matrix;
@@ -12,7 +11,7 @@ public class AntiDiagonal : Object
 		this.matrix = matrix;
 	}
 
-	public void CheckThreePointAntiDiagonalAlignmentAndKillEnemies(Matrix matrix, Point p, Score score)
+	public List<Point> CheckThreePointAntiDiagonalAlignmentAndKillEnemies(Matrix matrix, Point p, Score playerScore)
 	{
 		int row = p.GetX();
 		int col = p.GetY();
@@ -22,10 +21,14 @@ public class AntiDiagonal : Object
 		int colLength = board.GetLength(1);
 		Point[] pts = new Point[3];
 
-		CheckAlignment(board, p, pts, row, col, target, rowLength, colLength, score);
+		List<Point> dead = new List<Point>();
+
+		CheckAlignment(board, p, pts, row, col, target, rowLength, colLength, playerScore, dead);
+
+		return dead;
 	}
 
-	private void CheckAlignment(Point[,] matrix, Point p, Point[] pts, int row, int col, int target, int rowLength, int colLength, Score score)
+	private void CheckAlignment(Point[,] matrix, Point p, Point[] pts, int row, int col, int target, int rowLength, int colLength, Score score, List<Point> dead)
 	{
 		if (row <= rowLength - 3 && col >= 2)
 		{
@@ -64,34 +67,34 @@ public class AntiDiagonal : Object
 
 		if (pts[0] != null && pts[1] != null && pts[2] != null)
 		{
-			KillEnemies(matrix, pts, rowLength, colLength, score);
+			KillEnemies(matrix, pts, rowLength, colLength, score, dead);
 		}
 	}
 
-	private void KillEnemies(Point[,] matrix, Point[] pts, int rowLength, int colLength, Score score)
+	private void KillEnemies(Point[,] matrix, Point[] pts, int rowLength, int colLength, Score score, List<Point> dead)
 	{
 		int ally = pts[0].GetValue();
 
 		// Kill downward-left
 		if (pts[0].GetX() == 0 || pts[0].GetY() == colLength - 1)
 		{
-			FindAndKillEnemies(matrix, pts[2].GetX(), pts[2].GetY(), rowLength, 0, 1, -1, ally, score);
+			FindAndKillEnemies(matrix, pts[2].GetX(), pts[2].GetY(), rowLength, 0, 1, -1, ally, score, dead);
 		}
 		// Kill upward-right
 		else if (pts[2].GetX() == rowLength - 1 || pts[2].GetY() == 0)
 		{
-			FindAndKillEnemies(matrix, pts[0].GetX(), pts[0].GetY(), 0, colLength, -1, 1, ally, score);
+			FindAndKillEnemies(matrix, pts[0].GetX(), pts[0].GetY(), 0, colLength, -1, 1, ally, score, dead);
 		}
 		else
 		{
 			// Kill downward-left
-			FindAndKillEnemies(matrix, pts[2].GetX(), pts[2].GetY(), rowLength, 0, 1, -1, ally, score);
+			FindAndKillEnemies(matrix, pts[2].GetX(), pts[2].GetY(), rowLength, 0, 1, -1, ally, score, dead);
 			// Kill upward-right
-			FindAndKillEnemies(matrix, pts[0].GetX(), pts[0].GetY(), 0, colLength, -1, 1, ally, score);
+			FindAndKillEnemies(matrix, pts[0].GetX(), pts[0].GetY(), 0, colLength, -1, 1, ally, score, dead);
 		}
 	}
 
-	private void FindAndKillEnemies(Point[,] matrix, int startRow, int startCol, int endRow, int endCol, int rowStep, int colStep, int ally, Score score)
+	private void FindAndKillEnemies(Point[,] matrix, int startRow, int startCol, int endRow, int endCol, int rowStep, int colStep, int ally, Score score, List<Point> dead)
 	{
 		List<Point> enemies = new List<Point>();
 
@@ -124,8 +127,7 @@ public class AntiDiagonal : Object
 		{
 			enemy.SetValue(enemy.GetValue() * -1);
 			score.SetScore(score.GetScore() + 1);
-			GD.Print($"({enemy.GetX()}, {enemy.GetY()}) value: {enemy.GetValue()}");
+			dead.Add(enemy);
 		}
 	}
 }
-

@@ -21,8 +21,10 @@ public partial class MultiplayerGameOptionsController : Node2D
 	[Signal]
 	public delegate void ChangeSceneEventHandler(string currentScene);
 	
+	GameNode test;
 	public override void _Ready()
 	{
+		
 		GetNode<Label>("PlayButton/Label").Text = "Play";
 		Node timerNode = GetNode<Node>("GameTime").GetNode<Node>("Timer");
 		timerLabel = timerNode.GetNode<Label>("TimerLabel");

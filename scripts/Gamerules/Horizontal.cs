@@ -4,14 +4,14 @@ using System.Collections.Generic;
 
 public class Horizontal : Object
 {
-	private Matrix matrix;
+	private Matrix _matrix;
 
 	public Horizontal(Matrix matrix)
 	{
-		this.matrix = matrix;
+		_matrix = matrix;
 	}
 
-	public void CheckThreePointHorizontalAlignmentAndKillEnemies(Matrix matrix, Point p, Score score)
+	public List<Point> CheckThreePointHorizontalAlignmentAndKillEnemies(Matrix matrix, Point p, Score playerScore)
 	{
 		int row = p.GetX();
 		int col = p.GetY();
@@ -19,11 +19,14 @@ public class Horizontal : Object
 		Point[,] board = matrix.matrix;
 		int colLength = board.GetLength(1);
 		Point[] pts = new Point[3];
+		List<Point> dead = new List<Point>();
 
-		CheckAlignment(board, p, pts, row, col, target, colLength, score);
+		CheckAlignment(board, p, pts, row, col, target, colLength, playerScore, dead);
+
+		return dead;
 	}
 
-	private void CheckAlignment(Point[,] matrix, Point p, Point[] pts, int row, int col, int target, int colLength, Score score)
+	private void CheckAlignment(Point[,] matrix, Point p, Point[] pts, int row, int col, int target, int colLength, Score score, List<Point> dead)
 	{
 		if (col == 0)
 		{
@@ -60,32 +63,32 @@ public class Horizontal : Object
 
 		if (pts[0] != null && pts[1] != null && pts[2] != null)
 		{
-			KillEnemies(matrix, pts, row, colLength, score);
+			KillEnemies(matrix, pts, row, colLength, score, dead);
 		}
 	}
 
-	private void KillEnemies(Point[,] matrix, Point[] pts, int row, int colLength, Score score)
+	private void KillEnemies(Point[,] matrix, Point[] pts, int row, int colLength, Score score, List<Point> dead)
 	{
 		int ally = pts[0].GetValue();
 
 		if (pts[0].GetY() == 0)
 		{
-			FindAndKillEnemies(matrix, row, pts[2].GetY(), colLength, 1, ally, score);
+			FindAndKillEnemies(matrix, row, pts[2].GetY(), colLength, 1, ally, score, dead);
 		}
 		else if (pts[2].GetY() == colLength - 1)
 		{
-			FindAndKillEnemies(matrix, row, pts[0].GetY(), 0, -1, ally, score);
+			FindAndKillEnemies(matrix, row, pts[0].GetY(), 0, -1, ally, score, dead);
 		}
 		else
 		{
 			// Right Kill
-			FindAndKillEnemies(matrix, row, pts[2].GetY(), colLength, 1, ally, score);
+			FindAndKillEnemies(matrix, row, pts[2].GetY(), colLength, 1, ally, score, dead);
 			// Left Kill
-			FindAndKillEnemies(matrix, row, pts[0].GetY(), 0, -1, ally, score);
+			FindAndKillEnemies(matrix, row, pts[0].GetY(), 0, -1, ally, score, dead);
 		}
 	}
 
-	private void FindAndKillEnemies(Point[,] matrix, int row, int startCol, int endCol, int step, int ally, Score score)
+	private void FindAndKillEnemies(Point[,] matrix, int row, int startCol, int endCol, int step, int ally, Score score, List<Point> dead)
 	{
 		List<Point> enemies = new List<Point>();
 
@@ -117,7 +120,7 @@ public class Horizontal : Object
 		{
 			enemy.SetValue(enemy.GetValue() * -1);
 			score.SetScore(score.GetScore() + 1);
-			GD.Print($"({enemy.GetX()}, {enemy.GetY()}) value: {enemy.GetValue()}");
+			dead.Add(enemy);
 		}
 	}
 }

@@ -6,6 +6,8 @@ public class Player : Object
 	private int playerId;
 	private string name;
 	private int pointValue;
+	private int coins;
+	private int diamonds;
 
 	public Player(string name, int pointValue)
 	{
@@ -21,6 +23,26 @@ public class Player : Object
 	public void SetId(int playerId)
 	{
 		this.playerId = playerId;
+	}
+
+	public void SetCoins(int coins)
+	{
+		this.coins = coins;
+	}
+
+	public int GetCoins()
+	{
+		return coins;
+	}
+
+	public void SetDiamonds(int diamonds)
+	{
+		this.diamonds = diamonds;
+	}
+
+	public int GetDiamonds()
+	{
+		return diamonds;
 	}
 
 	public string GetName()
@@ -43,3 +65,4 @@ public class Player : Object
 		this.pointValue = pointValue;
 	}
 }
+

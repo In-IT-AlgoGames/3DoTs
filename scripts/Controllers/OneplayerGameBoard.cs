@@ -13,28 +13,31 @@ public partial class OneplayerGameBoard : GridContainer
 	private Vector2 position;
 	private int[,] gameBoardSate;
 
-	int player1KillingInRow = 0;
-	int player2KillingInRow = 0;
-	
+	int playerKillingInRow = 0;
+	int aiKillingInRow = 0;
+	// AI setup
+	AIPlayer aiPlayer ;
+	AIPlay aiPlay;
+	String aiLevel;
 	// Adaptation du code de Mr bray 
 	Matrix gameBoardMatrix;
-	Player player1;
-	Player player2;
+	Player player;
+	
 	Game game;
-	Score player1Score;
-	Score player2Score;
+	
+	Score playerScore;
+	Score aiScore;
 	Horizontal horizontalCheck;
 	Vertical verticalCheck;
 	Diagonal diagonalCheck;
 	AntiDiagonal antiDiagonalCheck;
 	
-	Label player1ScoreLabel;
-	Label player2ScoreLabel;
+	Label playerScoreLabel;
+	Label aiScoreLabel;
 	
-	List<Point> player1Points;
-	List<Point> player2Points;
-	
-	Computer computer;
+	List<Point> playerPoints;
+	List<Point> aiPoints;
+	 
 	// Pour bouger et redimensionner le plateau
 	private Vector2 startPosition;
 	private Vector2 initialPosition;
@@ -76,24 +79,23 @@ public partial class OneplayerGameBoard : GridContainer
 		boardSize = gameOptions.boardSize;
 			
 		game = new Game();
-		game.SetId(1); // change this from a global class after	
-		player1 = new Player(LocalPlayer.name, 1);
-		player1.SetId(1);
-		player2 = new Player("computer", 2);
-		player2.SetId(2);
-		
-		computer = new Computer(gameOptions.gameLevel);
+		game.SetId(5); // change this from a global class after	
+		player = new Player(LocalPlayer.name, 1);
+		player.SetId(1);
+		aiPlayer = new AIPlayer("computer", 2);
+		aiPlayer.SetId(2);
+		aiLevel = gameOptions.gameLevel;
 		NewGame();
 	}
 	
-	public void SetScoreLabel(Label player1, Label player2){
-		player1ScoreLabel = player1;
-		player2ScoreLabel = player2;
+	public void SetScoreLabel(Label player, Label ai){
+		playerScoreLabel = player;
+		aiScoreLabel = ai;
 	}
 	
 	public void UpdateScoreLabel(){
-		player1ScoreLabel.Text = player1Score.GetScore().ToString();
-		player2ScoreLabel.Text = player2Score.GetScore().ToString();
+		playerScoreLabel.Text = playerScore.GetScore().ToString();
+		aiScoreLabel.Text = aiScore.GetScore().ToString();
 	}
 
 	public void NewGame()
@@ -102,23 +104,70 @@ public partial class OneplayerGameBoard : GridContainer
 		SetCurrentDot();
 		Columns = boardSize; // set the gridContainer's column number
 		
-		player1KillingInRow = 0;
-		player2KillingInRow = 0;
+		// IA part of the game
+		aiPlayer = new AIPlayer("Computer", 2);
+		aiPlay = new AIPlay();
+		 
+		
+		playerKillingInRow = 0;
+		aiKillingInRow = 0;
 		
 		turnNumber = 0;
-		player1Points = new List<Point>();
-		player2Points = new List<Point>();
+		playerPoints = new List<Point>();
+		aiPoints = new List<Point>();
 		
-		player1Score = new Score(player1.GetId(), game.GetId());
-		player2Score = new Score(player2.GetId(), game.GetId());
+		playerScore = new Score(player.GetId(), game.GetId());
+		aiScore = new Score(aiPlayer.GetId(), game.GetId());
 		
-		currentPlayerId = player1.GetId();
+		currentPlayerId = player.GetId();
 		position = Vector2.Zero;
 		gameBoardMatrix = new Matrix(boardSize, boardSize);
 		horizontalCheck = new Horizontal(gameBoardMatrix);
 		verticalCheck = new Vertical(gameBoardMatrix);
 		diagonalCheck = new Diagonal(gameBoardMatrix);
 		antiDiagonalCheck = new AntiDiagonal(gameBoardMatrix);
+	}
+	
+	
+// this is the part where the IA examine the gameboard and apply it
+	public override void _Process(double delta)
+	{
+		if (currentPlayerId == aiPlayer.GetId())  {
+				Point newPoint = aiPlay.BestMove(gameBoardMatrix, player, aiPlayer, aiScore, playerScore, playerPoints, aiLevel);
+				int x = newPoint.GetX();
+				int y = newPoint.GetY();
+				aiPoints.Add(newPoint);
+		
+				newPoint.SetValue(currentPlayerId);
+				gameBoardMatrix.SetPoint(newPoint);
+				gameBoardSate[y , x] = currentPlayerId;
+				//restart player combo
+				playerKillingInRow = 0;
+
+				
+				
+				float hPosition =  x * cellSize + (cellSize / 2);
+				float vPosition =  y * cellSize + (cellSize / 2);
+				position = new Vector2(hPosition, vPosition);
+				int initialScore = aiScore.GetScore();
+
+				List<Point> deadPoint = CheckAndKill(gameBoardMatrix, horizontalCheck, verticalCheck, diagonalCheck, antiDiagonalCheck, aiPoints, playerPoints, aiScore);
+
+				if (aiScore.GetScore() == initialScore) {
+					currentPlayerId = player.GetId();
+				} 
+				else {
+					DrawDeadPoint(deadPoint);
+					aiKillingInRow += (aiScore.GetScore() - initialScore);
+					CheckCombo();
+				}
+				
+				MoveCurrentDot(position);
+				AddChild(currentDot);
+				SetCurrentDot();
+				UpdateScoreLabel();
+				CheckEndGame();
+			}
 	}
 
 	public void CreateCells()
@@ -204,49 +253,6 @@ public partial class OneplayerGameBoard : GridContainer
 		}
 	}
 
-// this is the part where the IA examine the gameboard and apply it
-	public override void _Process(double delta)
-	{
-		if (currentPlayerId == player2.GetId())  {
-				Point newPoint = computer.GetNextMove();
-				int x = newPoint.GetX();
-				int y = newPoint.GetY();
-				if (gameBoardSate[y, x] == 0) {
-						player2Points.Add(newPoint);
-				
-						newPoint.SetValue(currentPlayerId);
-						gameBoardMatrix.SetPoint(newPoint);
-						gameBoardSate[y , x] = currentPlayerId;
-						//restart player1 combo
-						player1KillingInRow = 0;
-		
-						
-						
-						float hPosition =  x * cellSize + (cellSize / 2);
-						float vPosition =  y * cellSize + (cellSize / 2);
-						position = new Vector2(hPosition, vPosition);
-						int initialScore = player2Score.GetScore();
-
-						List<Point> deadPoint = CheckAndKill(gameBoardMatrix, horizontalCheck, verticalCheck, diagonalCheck, antiDiagonalCheck, player2Points, player1Points, player2Score);
-
-						if (player2Score.GetScore() == initialScore) {
-							currentPlayerId = player1.GetId();
-						} 
-						else {
-							DrawDeadPoint(deadPoint);
-							player2KillingInRow += (player2Score.GetScore() - initialScore);
-							CheckCombo();
-						}
-						
-					MoveCurrentDot(position);
-					AddChild(currentDot);
-					SetCurrentDot();
-					UpdateScoreLabel();
-					CheckEndGame();
-				}
-			
-		}
-	}
 
 	public bool IsEdge(Vector2 mousePosition)
 	{
@@ -276,20 +282,20 @@ public partial class OneplayerGameBoard : GridContainer
 			newPoint.SetValue(currentPlayerId);
 			gameBoardMatrix.SetPoint(newPoint);
 			gameBoardSate[y, x] = currentPlayerId;
-			if (currentPlayerId == player1.GetId()) {
-				 player1Points.Add(newPoint);
-				player2KillingInRow = 0;
+			if (currentPlayerId == player.GetId()) {
+				 playerPoints.Add(newPoint);
+				aiKillingInRow = 0;
 				
-				int initialScore = player1Score.GetScore();
+				int initialScore = playerScore.GetScore();
 				
-				List<Point> deadPoint = CheckAndKill(gameBoardMatrix, horizontalCheck, verticalCheck, diagonalCheck, antiDiagonalCheck, player1Points, player2Points, player1Score);
+				List<Point> deadPoint = CheckAndKill(gameBoardMatrix, horizontalCheck, verticalCheck, diagonalCheck, antiDiagonalCheck, playerPoints, aiPoints, playerScore);
 				
-				if (player1Score.GetScore() == initialScore) {
-					currentPlayerId = player2.GetId();
+				if (playerScore.GetScore() == initialScore) {
+					currentPlayerId = aiPlayer.GetId();
 				} 
 				else {
 					DrawDeadPoint(deadPoint);		
-					player1KillingInRow += (player1Score.GetScore() - initialScore);
+					playerKillingInRow += (playerScore.GetScore() - initialScore);
 					CheckCombo();
 				}
 				
@@ -303,7 +309,7 @@ public partial class OneplayerGameBoard : GridContainer
 	}
 	
 	public void CheckCombo(){
-		if (player1KillingInRow >= 3) EmitSignal("Combo");	
+		if (playerKillingInRow >= 3) EmitSignal("Combo");	
 	}
 	
 	private void SetCurrentDot()
@@ -367,6 +373,6 @@ public partial class OneplayerGameBoard : GridContainer
 		if (turnNumber == (boardSize * boardSize)) EmitSignal("EndGame");
 	}
 	public int[] GetScore(){
-		return new int[]{player1Score.GetScore(), player2Score.GetScore()};
+		return new int[]{playerScore.GetScore(), aiScore.GetScore()};
 	}
 }
