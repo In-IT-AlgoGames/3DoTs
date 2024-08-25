@@ -360,3 +360,7 @@ vertical_alignment = 1
 [connection signal="GoOut" from="GameOverMenu" to="." method="GameOverGoOut"]
 [connection signal="Menu" from="GameOverMenu" to="." method="OnGameOverToMenu"]
 [connection signal="Restart" from="GameOverMenu" to="." method="OnGameOverRestartButton"]
+[connection signal="pressed" from="JokerPlayer1/Hint/Button" to="." method="OnHint1Pressed"]
+[connection signal="pressed" from="JokerPlayer1/Move/Button" to="." method="OnMoveDot1Pressed"]
+[connection signal="pressed" from="JokerPlayer1/Additional/Button" to="." method="OnAdditional1Pressed"]
+[connection signal="pressed" from="JokerPlayer1/SniperMode/Button" to="." method="OnSniper1Pressed"]

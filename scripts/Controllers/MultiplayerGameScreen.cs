@@ -197,7 +197,33 @@ public partial class MultiplayerGameScreen : Node2D
 		gameOverMenu.Hide();
 	}
 
+private void OnHint1Pressed()
+{
+	// Replace with function body.
 }
+
+
+private void OnMoveDot1Pressed()
+{
+	// Replace with function body.
+}
+
+
+
+
+private void OnSniper1Pressed()
+{
+	// Replace with function body.
+}
+
+
+private void OnAdditional1Pressed()
+{
+	
+}
+}
+
+
 
 
 

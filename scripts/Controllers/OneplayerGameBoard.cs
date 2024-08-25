@@ -145,8 +145,6 @@ public partial class OneplayerGameBoard : GridContainer
 				//restart player combo
 				playerKillingInRow = 0;
 
-				
-				
 				float hPosition =  x * cellSize + (cellSize / 2);
 				float vPosition =  y * cellSize + (cellSize / 2);
 				position = new Vector2(hPosition, vPosition);
